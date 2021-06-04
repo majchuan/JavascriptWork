@@ -104,3 +104,41 @@ for(const [key,value] in newSet.entries())
 {
     console.log(key, value);
 }
+
+let strVal = "markisgooddman";
+
+for(let i = 0 ; i < strVal.length; i++)
+{
+    console.log(strVal[i]);
+}
+
+console.log("new line");
+
+const longWords = [
+    'cat',
+    'car',
+    'cadaliac',
+    'caddy',
+    'alphabet',
+    'island'
+];
+
+longWords.forEach(x => {
+    let compressKey ="";
+    for(let i =0 ; i < x.length ; i++){
+        compressKey = compressKey + x[i];
+    }
+    console.log(compressKey);
+});
+
+const longWords_1 = longWords.map(x => {
+    return x.toUpperCase();
+});
+
+console.log(longWords_1);
+
+console.log(longWords_1.join(' '));
+
+const longWordsMap = longWords.map(x => x.toUpperCase());
+
+console.log(`This is new long words map ${longWordsMap}`);

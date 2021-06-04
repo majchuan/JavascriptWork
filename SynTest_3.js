@@ -1,3 +1,4 @@
+/*
 const orders = [
     {pickupTime :"2021-04-30 20:00:00 UTC", merchant:"roots" , cost:"500.00"},
     {pickupTime :"2021-04-30 08:00:00 UTC", merchant:"kitkat" , cost:"500.00"},
@@ -25,7 +26,7 @@ console.log(new Date().toLocaleDateString() === "4/30/2021");
 
 console.log(orders);
 */
-/*
+
 let i ; 
 let N = 4;
 for(i = 0 ; i < N ; i++)
