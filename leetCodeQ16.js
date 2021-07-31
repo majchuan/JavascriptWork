@@ -35,4 +35,25 @@ const target = -59;
 
 const nums1 =[-1,2,1,-4], target1 = 1;
 
-console.log(threeSumClosest(nums1,target1));
+//console.log(threeSumClosest(nums1,target1));
+
+/*
+* find all subsets
+*/
+const allSubsets =(nums,n)=>{
+    const result =[];
+    dfsSubsets(nums, result, [], 0 , n);
+    return result;
+}
+
+const dfsSubsets =(nums, result, currentSubset , index, target) =>{
+    //if(currentSubset.length == target){
+        result.push(currentSubset);
+    //}
+
+    for(let i = index ; i < nums.length; i++){
+        dfsSubsets(nums, result, currentSubset.concat(nums[i]), i+1,target);
+    }
+}
+
+console.log(allSubsets(nums1,3));

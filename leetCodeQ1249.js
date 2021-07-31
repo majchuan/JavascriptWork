@@ -19,7 +19,6 @@
         }
         i++;
     }
-    console.log(stack);
     let strArr = s.split('');
     for(let item of stack){
         strArr[item[1]] ='';

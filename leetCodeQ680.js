@@ -17,7 +17,7 @@
     return false;
 };
 
-const s ="bebeb";
+const s ="abcedba";
 console.log(validPalindrome(s));
 
 const validPalindrome2 = (s) =>{
