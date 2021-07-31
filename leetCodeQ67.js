@@ -56,4 +56,25 @@
 const a ="1010";
 const b ="1011";
 
-console.log(addBinary(a,b));
+//console.log(addBinary(a,b));
+
+/*
+*Faster approach
+*/
+var addBinaryFastApproach = function(a, b) {
+    const A = a.split('')
+    const B = b.split('')
+    let up = 0
+    let ans = ''
+    while (A.length > 0 || B.length > 0) {
+        const x = A.length > 0 ? +A.pop() : 0
+        const y = B.length > 0 ? +B.pop() : 0
+        ans = (x + y + up) % 2 + ans
+        up = (x + y + up) > 1 ? 1 : 0
+    }
+    if (up) ans = up + ans
+    return ans
+};
+
+const a1="1010" ,b1="0101";
+console.log(addBinaryFastApproach(a1,b1));
