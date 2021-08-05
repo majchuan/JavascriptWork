@@ -16,11 +16,10 @@
 
 const nums =[-2,1,-3,4,-1,2,1,-5,4];
 
-console.log([-1].reduce((x,y) => x+y,0));
+//console.log([-1].reduce((x,y) => x+y,0));
 
 var maxSubArray1 = function(nums) {
     let totalSum = Number.MIN_SAFE_INTEGER ;
-    let result = [];
     if (nums.length == 1) return nums[0];
     
     for(let i = 0 ; i < nums.length; i++){
@@ -37,4 +36,7 @@ var maxSubArray1 = function(nums) {
 };
 
 const nums1 =[];
-console.log(maxSubArray1(nums1));
+//console.log(maxSubArray1(nums1));
+
+const nums2=[2,1,4,9,3];
+console.log(maxSubArray1(nums2));

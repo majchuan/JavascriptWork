@@ -6,11 +6,8 @@ var permuteUnique = function(nums) {
     const hash_p = new Map();
     const result = [];
     permute(nums, 0 , hash_p);
-
-    for(let item in hash_p){
-        result.push(hash_p[item]);
-    }
-    return result;
+    
+    return Object.values(hash_p);
 };
 
 const permute = (nums,startIndex, hash_p) =>{

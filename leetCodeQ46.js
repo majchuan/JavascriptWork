@@ -10,7 +10,7 @@ var permute = function(nums){
 
 const recursivePermute =(nums, index ,results)=>{
     if(index == nums.length -1) {
-        results.push(nums.slice(0,2));
+        results.push(nums.slice(0,3));
     }
 
     for(let i = index ; i < nums.length; i++){

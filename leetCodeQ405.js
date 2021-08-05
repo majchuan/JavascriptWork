@@ -19,11 +19,6 @@
     }
 };
 
-const num = 26;
+const num = 255;
 
 console.log(toHex(num));
-
-const arr =[];
-
-arr[5] = 6 
-console.log(arr);
