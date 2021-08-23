@@ -17,7 +17,9 @@ const canFinish = (numCourses, prerequisites) => {
      
      return true;
 };
-
+// 0 unvisited
+// 1 processed
+// 2 processing
 const isCourseSchedule = (courseSchedule, visitedCourse, index) =>{
     if(visitedCourse[index] == 2) return true;
     visitedCourse[index] = 2; 

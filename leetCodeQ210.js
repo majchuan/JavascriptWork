@@ -13,9 +13,9 @@
     }
     
     for(let i = 0; i < prerequisites.length ; i++){
-        courseSchedule[prerequisites[i][1]] ? 
-            courseSchedule[prerequisites[i][1]].add(prerequisites[i][0]) :
-            courseSchedule[prerequisites[i][1]] = new Set().add(prerequisites[i][0]);
+        courseSchedule[prerequisites[i][0]] ? 
+            courseSchedule[prerequisites[i][0]].add(prerequisites[i][1]) :
+            courseSchedule[prerequisites[i][0]] = new Set().add(prerequisites[i][1]);
     }
     
     for(let i =0 ; i< numCourses ; i++){
@@ -37,14 +37,15 @@ const courseOrder = (courseSchedule, visitedCourse,index, result)=>{
                 courseOrder(courseSchedule,visitedCourse,courseIndex, result);
             }
         }
+        result.push(index);
     }
     visitedCourse[index] = 1 ;
-    result.push(index);
 }
 
 const numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]];
+const numCourses1 =2, prerequisites1=[[0,1]];
 
-console.log(findOrder(numCourses,prerequisites));
+console.log(findOrder(numCourses1,prerequisites1));
 
 
 /*

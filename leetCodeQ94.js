@@ -12,16 +12,37 @@
  */
  var inorderTraversal = function(root) {
     result = [];
-    traversal(root,result);
+    traversalInorder(root,result);
     return result;
 };
 
-const traversal = (node, result) =>{
+//in order traversal from root-left-right
+const traversalInorder = (node, result) =>{
     if(node == null) return null;
     
-    const leftNode = traversal(node.left, result);
+    const leftNode = traversalInorder(node.left, result);
     if(node){
         result.push(node.val)
     }
     const rightNode = traversal(node.right, result);
+}
+
+//pre order traversal from small to big
+const traversalPreorder = (node,result) =>{
+    if(node == null) return node ;
+
+    const leftNode = traversalPreorder(node.left, result);
+    if(node){
+        result.push(node.val);
+    }
+}
+
+//post order traversal from 
+const traversalPostorder =(node,result) =>{
+    if(node == null) return node;
+    const leftNode = traversalPostorder(node.left, result);
+    const rightNode = traversalPostorder(node.right, result);
+    if(node){
+        result.push(node.val);
+    }
 }

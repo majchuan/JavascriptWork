@@ -1,4 +1,8 @@
-var maxProfit = function(prices) {
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+ var maxProfit = function(prices) {
     if(prices.length == 0) return 0
     let dp = new Array(prices.length).fill(0);
     for(let t = 1; t <= 2; t++){ 
@@ -8,6 +12,7 @@ var maxProfit = function(prices) {
             min = Math.min(min, prices[i] - dp[i]);
             max = Math.max(max, prices[i] - min);
             dp[i] = max;
+            console.log("prices["+ i+"]",prices[i],"min", min ,"max",max ,"dp["+i+"]", max);
         }
     }
     return dp.pop();

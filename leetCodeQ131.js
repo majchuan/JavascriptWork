@@ -27,21 +27,25 @@ const checkPalindrome = (s) =>{
 */
 
 const backTrack =(s,start , subStrList, result) =>{
-    if(start == (s.length)){
+    //if(start == (s.length)){
         //console.log(subStrList) ;
         result.push(subStrList);
-    }
+    //}
+
     for(let i = start ; i< s.length ; i++){
         let subStrs = s.slice(start , i+1);
         if(checkPalindrome(subStrs)){
+            //console.log([...subStrList,subStrs]);
             backTrack(s, i+1 , [...subStrList, subStrs], result);
+            //backTrack(s,i+1,subStrList.concat(subStrs),result);
+            //backTrack(s,i+1, subStrList.concat(s[i]),result);
         }
     }
 
 }
 
 const s="aab";
-//console.log(partition(s));
+console.log(partition(s));
 
 /*
 * find continues array 2 sum 
@@ -62,5 +66,5 @@ const backTrackSum = (nums,start , currentNums,result) =>{
 
 const nums_continues=[1,2,3,4,5];
 const output=[]
-console.log(backTrackSum(nums_continues, 0 , [],output));
-console.log(output);
+//console.log(backTrackSum(nums_continues, 0 , [],output));
+//console.log(output);
