@@ -21,7 +21,7 @@ var buildTree = function(inorder, postorder) {
     return dfs(inorder, postorder);
 };
 
-const dfs = (inorder, postorder, postOrderIndex) =>{
+const dfs = (inorder, postorder) =>{
     if(inorder.length == 0 ) return null ;
     
     const val = postorder.pop();
