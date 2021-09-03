@@ -52,3 +52,38 @@ const partionElement = (regularArray,left,right)=>{
 }
 
 console.log(quickSort(regularArray,0,regularArray.length-1));
+
+/*
+*Quick sort by partion last element 
+*/
+
+const quickSortPartitionLastElement = (nums, low, high) =>{
+
+    if(low < high){
+        const pi = paritionLastElement(nums, low ,high);
+        quickSortPartitionLastElement(nums, low ,pi-1);
+        quickSortPartitionLastElement(nums, pi+1 ,high);
+    }
+
+    return nums;
+}
+
+const paritionLastElement =(nums, low ,high) =>{
+    const pivot = nums[high];
+    let i = low -1 ;
+
+    for(let j = low; j < high ; j++){
+        if(nums[j] < pivot){
+            i++;
+            swap(nums,i,j);
+        }
+    }
+    swap(nums, i+1 , high);
+    return i+1;
+}
+
+const swap =(nums, low, high) =>{
+    const temp = nums[low];
+    nums[low] = nums[high];
+    nums[high] = temp;
+}
