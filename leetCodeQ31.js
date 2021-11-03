@@ -49,6 +49,6 @@ function reverse(nums, start) {
     }
 }
 
-const nums =[1,2,3];
+const nums =[1,2,3,2,1];
 const nums1= [1,3,2];
-console.log(nextPermutation(nums1));
+console.log(nextPermutation(nums));
