@@ -40,7 +40,30 @@ var merge = function(intervals) {
     return result;
 };
 
+const mergeFaster = (intervals) =>{
+    intervals.sort((x,y) => x[0] - y[0]);
+    let current = intervals[0];
+    let low = current[0];
+    let high = current[1];
+    const result = [];
+
+    for(let interval of intervals){
+        current = interval ;
+        if(current[0] >= low && current[0] <= high){
+            high = Math.max(current[1], high) ;
+        }else{
+            result.push([low,high]);
+            low = current[0];
+            high = current[1];
+        }
+    }
+    result.push([low,high]);
+
+    return result; 
+}
+
 const intervals=[[1,3]];
 const intervals1=[[1,4],[0,0]];
 const intervals2=[[1,4],[0,2],[3,5]];
-console.log(merge(intervals2));
+//console.log(merge(intervals2));
+console.log(mergeFaster(intervals1));
