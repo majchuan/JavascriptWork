@@ -24,14 +24,11 @@
         result= result * result * x;
     }
 
-    if(n> 0){
-        return result;
-    }else{
-        return 1/result;
-    }
+    return result;
 };
 
 
 
 const x =8.95371, n=-1;
-console.log(myPow(x,n));
+const x1 = 2 , n1 =10 ;
+console.log(myPow(x1,n1));

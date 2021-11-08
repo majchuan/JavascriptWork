@@ -3,7 +3,7 @@
  * @return {number}
  */
  var maxSubArray = function(nums) {
-    let max = -Infinity;
+    let max = Number.MIN_SAFE_INTEGER;
     let currentMax = 0;
     
     for(let i = 0; i < nums.length; i++) {
