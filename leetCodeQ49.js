@@ -3,7 +3,6 @@
  * @return {string[][]}
  */
  var groupAnagrams = function(strs) {
-    const result = [];
     const hash_str ={}
     for(let s of strs){
         const sortedStr = s.split('').sort().join('');
