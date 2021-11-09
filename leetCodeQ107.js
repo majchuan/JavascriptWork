@@ -19,19 +19,19 @@ function TreeNode(val, left, right) {
     const hash_level ={};
     buildLevelOrder(root, hash_level ,0);
     
-    return Object.values(hash_level).reverse();
+    return Object.values(hash_level);
 };
 
 const buildLevelOrder =(node, hash_level, level)=>{
     if(node == null) return node;
-    buildLevelOrder(node.left,hash_level, level+1);
-    buildLevelOrder(node.right, hash_level,level+1);
     if(hash_level[level] != null){
         hash_level[level].push(node.val);
     }else{
         hash_level[level] = [];
         hash_level[level].push(node.val);
     }
+    buildLevelOrder(node.left,hash_level, level+1);
+    buildLevelOrder(node.right, hash_level,level+1);
 }
 
 
@@ -62,4 +62,5 @@ root.right = new TreeNode(20);
 root.right.left =new TreeNode(15);
 root.right.right= new TreeNode(7);
 
-console.log(levelOrderBottom(root));
+//console.log(levelOrderBottom(root));
+console.log(levelOrderBottomFaster(root));
