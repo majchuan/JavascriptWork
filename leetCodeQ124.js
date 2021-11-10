@@ -27,6 +27,8 @@ var maxPathSum = function(root) {
     return result;    
 };
 
+
+/*-----------------------------------------------------------------------------------------*/
 var maxPathSum = function(root) {
     let maxSum = Number.MIN_SAFE_INTEGER ;
     return findMaxSum(root, maxSum);

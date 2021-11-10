@@ -34,7 +34,9 @@ const buildLevelOrder =(node, hash_level, level)=>{
     buildLevelOrder(node.right, hash_level,level+1);
 }
 
-
+/*
+* BFS Search approach
+*/
 var levelOrderBottomFaster = function(root) {
     if (!root) return [];
     
