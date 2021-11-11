@@ -38,3 +38,23 @@
     
     return head;
 };
+
+//Insert sort aloghterim 
+const nums=[10,9,8,7,6,5,4,3,2,1];
+const insertSort = (nums) =>{
+
+    for(let i = 1 ; i < nums.length ; i++){
+        let j = i -1;
+        const key = nums[i];
+        while(j >= 0 && nums[j] > nums[i] ){
+            nums[j+1] =nums[j];
+            j--;
+        }
+
+        nums[j+1] = key;
+    }
+
+    return nums;
+}
+
+console.log(insertSort(nums));

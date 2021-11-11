@@ -38,3 +38,4 @@ const isCourseSchedule = (courseSchedule, visitedCourse, index) =>{
 }
 
 console.log(canFinish(numCourse,prerequisites));
+

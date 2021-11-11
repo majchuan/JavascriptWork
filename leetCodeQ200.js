@@ -22,6 +22,8 @@ const dfs =(grid, m, n) =>{
     if (m < 0 || n < 0 || m === grid.length || n === grid[0].length) return;
     if (grid[m][n] === "0") return;
     
+    console.log(grid);
+
     grid[m][n] = "0";
     dfs(grid,m-1, n);
     dfs(grid,m+1, n);
@@ -36,4 +38,11 @@ const grid = [
     ["0","0","0","0","0"]
   ];
 
-  console.log(numIslands(grid))
+const grid1 = [
+    ["1","1","0","0","0"],
+    ["1","1","0","0","0"],
+    ["0","0","1","0","0"],
+    ["0","0","0","1","1"]
+  ]
+
+  console.log(numIslands(grid1))

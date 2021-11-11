@@ -16,7 +16,7 @@
 
 const nums = [5,2,3,4];
 
-console.log(productExceptSelf(nums));
+//console.log(productExceptSelf(nums));
 
 const productExceptSelf_1 = (nums) =>{
     const result = [];
@@ -50,6 +50,6 @@ const sumExceptSelf_1 = (nums) =>{
     return result;
 }
 
-console.log(sumExceptSelf_1(nums));
+//console.log(sumExceptSelf_1(nums));
 
-console.log((1/90).toString().split('.'));
+//console.log((1/90).toString().split('.'));
