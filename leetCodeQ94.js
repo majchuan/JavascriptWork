@@ -30,11 +30,9 @@ const traversalInorder = (node, result) =>{
 //pre order traversal from small to big
 const traversalPreorder = (node,result) =>{
     if(node == null) return node ;
-
+    result.push(node.val);
     const leftNode = traversalPreorder(node.left, result);
-    if(node){
-        result.push(node.val);
-    }
+    const rightNode = traversalPreorder(node.right, result);
 }
 
 //post order traversal from 

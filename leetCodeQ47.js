@@ -4,7 +4,6 @@
  */
 var permuteUnique = function(nums) {
     const hash_p = new Map();
-    const result = [];
     permute(nums, 0 , hash_p);
     
     return Object.values(hash_p);
@@ -31,7 +30,7 @@ const swap = (nums, left,right) =>{
 }
 
 const nums=[1,1,2];
-console.log(permuteUnique(nums));
+console.log(permuteUnique1(nums));
 
 /**
  * @param {number[]} nums
@@ -45,7 +44,7 @@ console.log(permuteUnique(nums));
 }
 
 function getPermutationsHelper(array, currPermutation, permutations) {
-	if (!array.length && currPermutation.length) {
+	if (array.length == 0 && currPermutation.length) {
 		permutations.push(currPermutation);
 	} else {
 		for (let i = 0; i < array.length; i++) {

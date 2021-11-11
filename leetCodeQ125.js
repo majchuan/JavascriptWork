@@ -4,7 +4,7 @@
  */
  var isPalindrome = function(s) {
     let cleanString = "";
-    const regex =/[A-Za-z]/g
+    const regex =/[0-9A-Za-z]/g
     
     for(let i =0; i< s.length; i++){
         if(s[i].match(regex)){

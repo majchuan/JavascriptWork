@@ -13,6 +13,7 @@
             max = Math.max(max, prices[i] - min);
             dp[i] = max;
             console.log("prices["+ i+"]",prices[i],"min", min ,"max",max ,"dp["+i+"]", max);
+            console.log(dp);
         }
     }
     return dp.pop();
