@@ -11,17 +11,19 @@ var minPathSum = function(grid) {
     let res = [0];
     for(let i = 0; i < row; i++){
         for(let j = 0; j < column; j++){
+            console.log(res);
             if(i === 0){
+                console.log(j,res[j], i ,grid[i][j] , res[j] + grid[i][j] );
                 res.push(res[j] + grid[i][j]);
-                console.log(i,j,res);
             } else if(j === 0){
+               
                 res[j + 1] += grid[i][j];
             } else {
                 res[j + 1] = Math.min(res[j], res[j + 1]) + grid[i][j];
             }
         }
     }
-    
+    console.log(res);
     return res[column];
 };
 
@@ -76,4 +78,6 @@ const grid2=   [[7,1,3,5,8,9,9,2,1,9,0,8,3,1,6,6,9,5],
                 [5,7,8,3,8,8,3,9,9,8,1,9,2,5,4,7,7,7],
                 [2,3,2,4,8,5,1,7,2,9,5,2,4,2,9,2,8,7],
                 [0,1,6,1,1,0,0,6,5,4,3,4,3,7,9,6,1,9]];
-console.log(minPathSum(grid1));
+console.log(minPathSum(grid));
+
+
