@@ -32,4 +32,19 @@ const fibDPTabulation = (n) =>{
     return dp[n];
 }
 
-console.log(fibDPTabulation(6));
+//console.log(fibDPTabulation(6));
+
+const assignHole=(mices,holes) => {
+    const result = [];
+    mices.sort();
+    holes.sort();
+    let max = 0 ;
+    for(let i = 0; i < mices.length; i++){
+        max = Math.max(max, Math.abs(mices[i] - holes[i]));
+    }
+
+    return max ;
+}
+
+const mices = [4,-4,2], holes=[4,0,5];
+console.log(assignHole(mices, holes))
