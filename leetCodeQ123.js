@@ -10,11 +10,11 @@
         let max = 0;
         for(let i = 1; i < prices.length; i++){
             min = Math.min(min, prices[i] - dp[i]);
+            console.log(min, prices[i] , dp[i]);
             max = Math.max(max, prices[i] - min);
             dp[i] = max;
-            console.log("prices["+ i+"]",prices[i],"min", min ,"max",max ,"dp["+i+"]", max);
-            console.log(dp);
         }
+        console.log(dp);
     }
     return dp.pop();
 };

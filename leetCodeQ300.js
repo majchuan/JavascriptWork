@@ -13,7 +13,7 @@
         let pos = binarySearchPosition(dp, nums[i], i);
         dp[pos] = nums[i];
     }
-
+    console.log(dp);
     for (let i = dp.length-1; i >= 0; i--){
         if (dp[i] !== Number.MAX_SAFE_INTEGER) return i+1;
     }

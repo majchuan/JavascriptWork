@@ -29,4 +29,4 @@ const swap = (nums, leftIndex, rightIndex) =>{
 }
 
 const nums =[1,2,3];
-console.log(permute(nums));
+//console.log(permute(nums));
