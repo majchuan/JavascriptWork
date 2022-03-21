@@ -36,9 +36,40 @@ const dfs = (leftNode, rightNode) => {
 }
 
 const root = new TreeNode(1);
-root.left = new TreeNode(2);
-root.right = new TreeNode(2);
-root.left.right = new TreeNode(3);
-root.right.right = new TreeNode(3);
+//root.left = new TreeNode(2);
+//root.right = new TreeNode(2);
+//root.left.right = new TreeNode(3);
+//root.right.right = new TreeNode(3);
 
-console.log(isSymmetric(root));
+//console.log(isSymmetric(root));
+
+const bfs =(node) =>{
+
+    if(node && node.left == null && node.right == null) return true;
+    if(node.left == null || node.right == null) return false;
+    
+    const leftQueue = [node.left];
+    const rightQueue =[node.right];
+
+    while(leftQueue.length > 0 && rightQueue.length > 0){
+        const leftNode = leftQueue.pop();
+        const rightNode = rightQueue.pop();
+        if(leftNode && rightNode == null) return false;
+        if(leftNode == null && rightNode) return false;
+        if(leftNode.val != rightNode.val ) return false;
+
+        if(leftNode.left && rightNode.right){
+            leftQueue.push(leftNode.left);
+            rightQueue.push(rightNode.right);
+        }else if(leftNode.left || rightNode.right) return false;
+
+        if(leftNode.right && rightNode.left){
+            leftQueue.push(rightNode.left);
+            rightQueue.push(leftNode.right);
+        }else if(leftNode.right || rightNode.left) return false;
+    }
+
+    return true;
+}
+
+console.log(bfs(root));
