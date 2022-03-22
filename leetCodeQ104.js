@@ -26,3 +26,27 @@ const maxBinaryDepth =(node, depth) =>{
         return Math.max(leftDepth, rightDepth);
     }
 }
+
+/*
+*BFS
+*/
+const bfs =(node) =>{
+    if(node == null) return 0;
+    const enqueue =[node];
+    let level = 0;
+    while(enqueue.length > 0){
+        let currLength = enqueue.length;
+        for(let i = 0; i < currLength; i++){
+            let currNode = enqueue.shift();
+            if(currNode.left){
+                enqueue.push(currNode.left);
+            }
+            if(currNode.right){
+                enqueue.push(currNode.right);
+            }
+        }
+        level++;
+    }
+
+    return level; 
+}

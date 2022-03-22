@@ -62,6 +62,23 @@ var minDepthFaster = function(root) {
     return traverse(root, 1);
 };
 
+const minDepthBottomToUp =(node) =>{
+    if(node == null) return 0 ;
+    if(node.left == null && node.right == null) return 1;
+
+    if(node.left != null && node.right == null){
+        return minDepthBottomToUp(node.left) + 1;
+    }
+    if(node.right != null && node.left == null){
+        return minDepthBottomToUp(node.right) + 1 ;
+    }
+
+    return Math.min(minDepthBottomToUp(node.left), minDepthBottomToUp(node.right)) + 1;
+}
+
+/*
+*BFS
+*/ 
 var minDepthWhileLoop = function(root) {
     if(!root) return 0;
     let que = [root];
