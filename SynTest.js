@@ -142,3 +142,7 @@ console.log(longWords_1.join(' '));
 const longWordsMap = longWords.map(x => x.toUpperCase());
 
 console.log(`This is new long words map ${longWordsMap}`);
+
+
+const isPromoted = prompt("Mark", 100);
+alert(isPromoted);

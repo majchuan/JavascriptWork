@@ -76,5 +76,17 @@ var addBinaryFastApproach = function(a, b) {
     return ans
 };
 
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinaryFastest = function(a, b) {
+    const aBin = `0b${a}`
+    const bBin = `0b${b}`
+    const sum = BigInt(aBin) + BigInt(bBin)
+    return sum.toString(2)
+};
+
 const a1="1010" ,b1="0101";
 console.log(addBinaryFastApproach(a1,b1));
