@@ -3,23 +3,71 @@
  * @param {number[][]} prerequisites
  * @return {number[]}
  */
- var findOrder = function(numCourses, prerequisites) {
-    const courseSchedule = {};
-    const visitedCourse = [];
-    const result = [];
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {number[]}
+ */
+ var findOrderBFS = function(numCourses, prerequisites) {
+    const scheduleCourses = {};
+    const connectedCourses ={};
+    const queue =[];
+    const courseOrder = [];
+    let courseTakenNumber = 0 ;
     
-    for(let i = 0 ; i < numCourses ; i++){
-        visitedCourse[i] = 0;
+    for(let [course,prerequisite] of prerequisites){
+        scheduleCourses[prerequisite] ? scheduleCourses[prerequisite].add(course) : 
+        scheduleCourses[prerequisite] = new Set().add(course);
+        connectedCourses[course] ? connectedCourses[course]++ : connectedCourses[course] = 1;
     }
     
-    for(let i = 0; i < prerequisites.length ; i++){
-        courseSchedule[prerequisites[i][0]] ? 
-            courseSchedule[prerequisites[i][0]].add(prerequisites[i][1]) :
-            courseSchedule[prerequisites[i][0]] = new Set().add(prerequisites[i][1]);
+    for(let i = 0 ; i < numCourses; i++){
+        if(connectedCourses[i] == null){
+            queue.push(i);
+            while(queue.length > 0){
+                const currLength = queue.length;
+                for(let i = 0; i < currLength; i++){
+                    const numCourse = queue.pop();
+                    courseTakenNumber++;
+                    courseOrder.push(numCourse);
+                    const courses = scheduleCourses[numCourse];
+                    if(courses != null){
+                        for(let course of courses){
+                            if(connectedCourses[course] != null){
+                                connectedCourses[course]--;
+                                if(connectedCourses[course] == 0){
+                                    queue.push(course);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    if(courseTakenNumber == numCourses){
+        return courseOrder ;
+    }else{
+        return [];
+    }
+    
+    
+};
+
+ var findOrderDFS = function(numCourses, prerequisites) {
+    const courseSchedule = {};
+    const visitedCourse = new Array(numCourses).fill(0);
+    const result = [];
+    
+    for(let [course,prerequisite] of prerequisites){
+        courseSchedule[prerequisite] ? courseSchedule[prerequisite].add(course) : courseSchedule[prerequisite] = new Set().add(course);
     }
     
     for(let i =0 ; i< numCourses ; i++){
-        courseOrder(courseSchedule, visitedCourse, i , result)
+        if(visitedCourse[i] == 0 && courseOrder(courseSchedule, visitedCourse, i , result)){
+            return [];
+        }
     }
 
     return result;
@@ -28,18 +76,24 @@
 // 1 processed
 // 2 processing
 const courseOrder = (courseSchedule, visitedCourse,index, result)=>{    
-    visitedCourse[index] = 2 ;
+    if(visitedCourse[index] == 1) return true;
+    if(visitedCourse[index] == 2) return false;
+    visitedCourse[index] = 2; 
 
     const selectedCourse = courseSchedule[index];
     if(selectedCourse != null){
-        for(let courseIndex of selectedCourse){
-            if(visitedCourse[courseIndex] != 1){
-                courseOrder(courseSchedule,visitedCourse,courseIndex, result);
+        for(let course of selectedCourse){
+            if(visitedCourse[course] != 1){
+                if(courseOrder(courseSchedule,visitedCourse,course, result)){
+                    return true;
+                }
             }
         }
-        result.push(index);
     }
+
     visitedCourse[index] = 1 ;
+    result.push(index);
+    return false;
 }
 
 const numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]];

@@ -1,7 +1,9 @@
-const numCourse =3 ;
-const prerequisites =[[1,0],[1,2],[0,1]]
-
-const canFinish = (numCourses, prerequisites) => {
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
+const canFinishDFS = (numCourses, prerequisites) => {
     const courseSchedule = {};
     const visitedCourse = Array(numCourses).fill(0);
      
@@ -10,7 +12,7 @@ const canFinish = (numCourses, prerequisites) => {
      });
      
      for(let i =0; i < numCourses; i++){
-         if(isCourseSchedule(courseSchedule,visitedCourse,i) == true){
+         if(visitedCourse[i] == 0 && isCourseSchedule(courseSchedule,visitedCourse,i) == true){
              return false;
          }
      }
@@ -22,6 +24,7 @@ const canFinish = (numCourses, prerequisites) => {
 // 2 processing
 const isCourseSchedule = (courseSchedule, visitedCourse, index) =>{
     if(visitedCourse[index] == 2) return true;
+    if(visitedCourse[index] == 1) return false;
     visitedCourse[index] = 2; 
     const courseSelected = courseSchedule[index];
     if(courseSelected){
@@ -33,9 +36,53 @@ const isCourseSchedule = (courseSchedule, visitedCourse, index) =>{
             }
         }
     }
-    visistedCourse[index]=1;
+    visitedCourse[index]=1;
     return false;
 }
 
-console.log(canFinish(numCourse,prerequisites));
+
+const canFinishBFS=(numCourses, prerequisites)=>{
+    const courseSchedules = {};
+    const initCourses = {};
+    const queue =[];
+    let counter = 0;
+
+    for(let [course, prerequisite] of prerequisites){
+        courseSchedules[prerequisite] ? courseSchedules[prerequisite].add(course) : courseSchedules[prerequisite] = new Set().add(course);
+        initCourses[course] ? initCourses[course]++ : initCourses[course] = 1;
+    }
+
+    for(let i = 0; i< numCourses ;i++){
+        if(initCourses[i] == null){
+            queue.push(i);
+
+            while(queue.length > 0 ){
+                const currLength = queue.length;
+                for(let i = 0 ; i< currLength; i++){
+                    const course = queue.shift();
+                    counter++;
+                    if(courseSchedules[course] != null){
+                         for(let courseTaken of courseSchedules[course]){
+                             if(initCourses[courseTaken]){
+                                 initCourses[courseTaken]--;
+                                 if(initCourses[courseTaken]== 0){
+                                     queue.push(courseTaken);
+                                 }
+                             }
+                         }
+                    }
+                }
+            }
+        }
+    }
+
+    return counter == numCourses ; 
+}
+
+const numCourse =3 ;
+const prerequisites =[[1,0],[1,2],[0,2]]
+console.log(canFinishDFS(numCourse,prerequisites));
+
+console.log(canFinishBFS(numCourse,prerequisites));
+
 
