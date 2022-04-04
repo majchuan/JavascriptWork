@@ -10,7 +10,7 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
- var isValidBST = function(root) {
+var isValidBST = function(root) {
     return isValidBSTHelp(root, null, null);
 };
 
@@ -19,4 +19,27 @@ const isValidBSTHelp = (node, min, max) =>{
     if(min != null && node.val <= min) return false;
     if(max != null && node.val >= max) return false;
     return isValidBSTHelp(node.left, min, node.val) && isValidBSTHelp(node.right, node.val , max) ;
+}
+
+//use inroder attribute to define this is a binary search tree.
+var isValidBSTInorder = function(root) {
+    const inOrderArr =[];
+    dfs(root,inOrderArr);
+    console.log(inOrderArr);
+    for(let i = 0 ; i< inOrderArr.length-1; i++){
+        if(inOrderArr[i] >= inOrderArr[i+1]){
+            return false
+        }
+    }
+    return true;
+};
+
+const dfs=(node,result) =>{
+    if(node == null) return node;
+    
+    dfs(node.left,result);
+    result.push(node.val);
+    dfs(node.right,result);
+    
+    return
 }
