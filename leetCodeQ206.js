@@ -44,3 +44,20 @@ var reverseList = function(head) {
       return n;
  
  };
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseListEasyUnderstandTouChaApproach = function(head) {
+    let behindNode = null;
+    while(head != null){
+        let nextNode = head.next;
+        head.next = behindNode;
+        behindNode = head;
+        head = nextNode;
+    }
+    
+    return behindNode;
+};
+  

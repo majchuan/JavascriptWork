@@ -51,7 +51,7 @@ const partionElement = (regularArray,left,right)=>{
     return leftIndex ;
 }
 
-console.log(quickSort(regularArray,0,regularArray.length-1));
+//console.log(quickSort(regularArray,0,regularArray.length-1));
 
 /*
 *Quick sort by partion last element 
@@ -87,3 +87,6 @@ const swap =(nums, low, high) =>{
     nums[low] = nums[high];
     nums[high] = temp;
 }
+
+const nums1 =[6,5,4,3,2,1];
+console.log(quickSortPartitionLastElement(nums1,0, nums1.length-1));

@@ -1,7 +1,14 @@
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
 var topKFrequent = function(nums, k) {
     const map = new Map();
     for(let n of nums) map.set(n, (map.get(n) || 0) + 1);
+
     const keys = [...map.keys()], finalIdx = keys.length - k;
+    
     let start = 0, end = keys.length-1;
     
     while(start <= end) {
