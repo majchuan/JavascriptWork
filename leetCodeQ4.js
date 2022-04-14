@@ -36,3 +36,24 @@
 const nums1 = [1,3], nums2 = [2] ;
 const nums3 = [1,2], nums4 = [3,4]
 console.log(findMedianSortedArrays(nums3, nums4));
+
+const mergeTwoSortedArray = (nums1, nums2) =>{
+    const length = nums1.length + nums2.length;
+    const mergeNums =[];
+    let i = 0, j = 0 ;
+
+    while(mergeNums.length < length){
+        if(nums1[i] < nums2[j] || j >= nums2.length){
+            mergeNums.push(nums1[i]);
+            i++;
+        }else if(nums2[j] <= nums1[i] || i >= nums1.length){
+            mergeNums.push(nums2[j]);
+            j++;
+        }
+    }
+
+    console.log(mergeNums);
+    return mergeNums;
+}
+
+console.log(mergeTwoSortedArray(nums1, nums2));

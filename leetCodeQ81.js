@@ -43,7 +43,41 @@ const searchIndex = (nums, target, startIndex, endIndex) =>{
     }
 }
 
+const searchBinarySearch=(nums, target)=>{
+    let left = 0 ;
+    let right = nums.length - 1;
+    
+    while(left <= right){
+        let mid = Math.floor((left+right)/2);
+        
+        if(nums[mid] == target) {
+            return true;
+        }
+        
+        if(nums[left] < nums[mid]){
+            if(target < nums[mid] && target >= nums[left] ){
+                right = mid -1;
+            }else{
+                left = mid+1;
+            }
+        }else if(nums[left] > nums[mid]){
+            if(target > nums[mid] && target <= nums[right]){
+                left = mid + 1;
+            }else{
+                right = mid -1;
+            }
+
+        }else{
+            left++;
+        }
+    }
+    
+    return false;
+}
+
 const nums = [2,5,6,0,0,1,2], target = 0;
 const nums1= [2,5,6,0,0,1,2], target1 =3;
 const nums2= [2,2,2,3,2,2,2], target2= 3;
-console.log(search(nums2,target2));
+const nums3 = [1,1,1,1,1,1,1,1,1,13,1,1,1,1,1,1,1,1,1,1,1,1], target3 = 13;
+//console.log(search(nums2,target2));
+console.log(searchBinarySearch(nums3,target3));
