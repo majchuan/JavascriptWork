@@ -2,20 +2,25 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-var moveZeroes = function(nums) {
-    let i = 0,  j = 0;
-    while (i < nums.length) {
-      if (nums[i] != 0) {
-        let temp = nums[i];
-        nums[i] = 0;
-        nums[j] = temp;
-        j++;
+/*
+*Two pointers 
+*/
+ var moveZeroesTwoPointer = function(nums) {
+    // two pointers
+      let slow = 0;
+      let faster = 0;
+      while(faster < nums.length){
+          if(nums[faster] != 0){
+              if(slow != faster){
+                  [nums[slow],nums[faster]] =[nums[faster],nums[slow]];
+                  slow++;
+              }else{
+                  slow++;
+              }
+          }
+          faster++;
       }
-      i++;
-    }
-
-    return nums;
-};
+  };
 
 const nums = [0,1,0,3,12];
 
