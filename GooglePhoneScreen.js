@@ -15,3 +15,7 @@ input 999 as 9 minitues and 99 seconds (press button 9 three times) the total ti
 input 888 as 8 minitues and 88 seconds (press button 8 three times) the total time will be 9 miniitues and 28 seconds,
 coose 888 because it is closer. total cost 888 = 3; 
 */
+
+const findCloseTime = (input) =>{
+    
+}
