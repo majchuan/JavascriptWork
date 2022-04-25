@@ -27,21 +27,6 @@
 
 };
 
-<<<<<<< HEAD
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @param {number} k
- * @return {ListNode}
- */
- var swapNodesSlowWithArrayApproach = function(head, k) {
-=======
 var swapNodesSlower = function(head, k) {
     let curr = head;
     let length = 0;
@@ -76,7 +61,6 @@ var swapNodesSlower = function(head, k) {
 
 };
  var swapNodesSlowest = function(head, k) {
->>>>>>> 33e96291c844492a203344be5310a078b275ee7d
     let nodes = [];
     let curr = head;
     while(curr){
