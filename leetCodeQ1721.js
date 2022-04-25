@@ -27,6 +27,7 @@
 
 };
 
+<<<<<<< HEAD
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -40,6 +41,42 @@
  * @return {ListNode}
  */
  var swapNodesSlowWithArrayApproach = function(head, k) {
+=======
+var swapNodesSlower = function(head, k) {
+    let curr = head;
+    let length = 0;
+    
+    while(curr){
+        length++;
+        curr=curr.next;
+    }
+   
+    let left = 1;
+    curr = head;
+    let slow = null;
+    let fast = null;
+    while(curr){
+        if(left == k){
+            slow = curr;
+        }
+        
+        if(left == (length - k+1)){
+            fast = curr;
+        }
+        left++;
+        curr = curr.next;
+    }
+    console.log(slow.val, fast.val)
+    let temp = slow.val;
+    slow.val = fast.val;
+    fast.val = temp;
+    
+    return head;
+    
+
+};
+ var swapNodesSlowest = function(head, k) {
+>>>>>>> 33e96291c844492a203344be5310a078b275ee7d
     let nodes = [];
     let curr = head;
     while(curr){
