@@ -32,3 +32,46 @@
     }
     
 };
+
+const mergeListFast = (Lists) => {
+    if(Lists.length == 0) return null;
+    
+    let rootNode = Lists[0];
+
+    for(let i = 1 ; i < lists.Length ; i++){
+        rootNode = merge(rootNode, Lists[i]);
+    }
+
+    return rootNode;
+}
+
+const merge =(listNode1, listNode2) =>{
+    let head = new ListNode();
+    let currNode = head;
+
+    while(listNode1 && listNode2){
+        if(listNode1.val < listNode2.val){
+            currNode.next = listNode1;
+            currNode = currNode.next;
+            listNode1 = listNode1.next;
+        }else{
+            currNode.next = listNode2 ;
+            currNode = currNode.next;
+            listNode2 = listNode2.next;
+        }
+    }
+
+    while(listNode1){
+        currNode.next = listNode1;
+        currNode = currNode.next;
+        listNode1 = listNode1.next;
+    }
+
+    while(listNode2){
+        currNode.next = listNode2;
+        currNode = currNode.next;
+        listNode2 = listNode2.next;
+    }
+
+    return head.next;
+}

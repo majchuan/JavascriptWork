@@ -17,37 +17,31 @@ function TreeNode(val, left, right) {
     this.right = (right===undefined ? null : right)
 }
 
-var hasPathSum = function(root, targetSum) {
+var pathSum = function(root, targetSum) {
     const result=[];
-    const paths =[];
-    findPathSum(root, result,targetSum, paths);
-    return paths
+    findPathSum(root, [], result, 0 ,targetSum);
+    return result;
 };
 
-const findPathSum =(node, result, targetSum, paths)=>{
+const findPathSum =(node, curr , result, s , targetSum)=>{
     if(node == null) {
-        return false;
+        return ;
     }
-    result.push(node.val);
+    curr.push(node.val);
+    s+=node.val;
     if(node.left == null && node.right == null){
-        let sum = result.reduce((x,y) => x+ y,0);
-        if(sum == targetSum){
-            paths.push(result);
-            return true;
-        }else{
-            return false;
+        if(s == targetSum){
+            result.push(curr);
         }
+        return;
     }
     
-    let isNodeLeftTargetSum = findPathSum(node.left, result.slice(), targetSum, paths);
-    let isNodeRightTargetSum = findPathSum(node.right,result.slice(), targetSum , paths);
+    findPathSum(node.left, curr.slice(), result,s, targetSum);
+    findPathSum(node.right,curr.slice(),result,s, targetSum);
     
-    if(isNodeLeftTargetSum || isNodeRightTargetSum){
-        return true;
-    }else{
-        return false;
-    }
+    return;
 }
+
 
 const root = new TreeNode(5);
 root.left = new TreeNode(4);

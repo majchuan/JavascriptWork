@@ -58,3 +58,23 @@ root.right.right = new TreeNode(4);
 root.right.right.right = new TreeNode(1);
 const targetSum = 22 ;
 console.log(hasPathSum(root, targetSum));
+
+/*------------------------------------------------------------------*/
+
+var hasPathSumBetterSolution = function(root, targetSum) {
+    
+    if(root == null) return false;
+    
+    return dfs(root, 0, targetSum);
+    
+};
+
+const dfs=(node,s, targetSum) =>{
+    if(node == null) return false;
+    s+=node.val;
+    if(node.left == null && node.right == null){
+        return s == targetSum;
+    }
+    
+    return dfs(node.left, s, targetSum) || dfs(node.right,s, targetSum);
+}
