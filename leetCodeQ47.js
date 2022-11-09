@@ -55,3 +55,4 @@ function getPermutationsHelper(array, currPermutation, permutations) {
 		}
 	}
 }
+
