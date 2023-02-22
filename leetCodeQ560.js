@@ -3,7 +3,10 @@
  * @param {number} k
  * @return {number}
  */
-//sum(i,j)=sum(0,j)-sum(0,i), where sum(i,j) represents the sum of all the elements from index i to j-1.
+/*
+if the cumulative sum up to two indices, say i and j is at a difference of k i.e. 
+if sum[i]−sum[j]=k , the sum of elements lying between indices i and j is k.
+*/
 const subarraySum = (nums, k) => {
     const hashmap = {0: 1}
     let count = 0, total = 0
