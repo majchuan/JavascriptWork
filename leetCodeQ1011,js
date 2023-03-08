@@ -1,0 +1,40 @@
+/**
+ * @param {number[]} weights
+ * @param {number} days
+ * @return {number}
+ */
+var shipWithinDays = function(weights, days) {
+    let maxWeight = 0;
+    let totalWeight = 0 ;
+    for(let weight of weights){
+        totalWeight += weight;
+        maxWeight = Math.max(weight, maxWeight);
+    }
+
+    let left = maxWeight;
+    let right = totalWeight;
+    
+    while(left < right){
+        let mid = Math.floor((left+right)/2);
+        if(findShipCap(weights, mid, days)){
+            right = mid;
+        }else{
+            left = mid+1;
+        }
+    }
+    return right;
+};
+
+const findShipCap =(weights, midWeight, days) =>{
+    let currDays = 1 ;
+    let currWeight = 0;
+    for(let weight of weights){
+        currWeight+=weight;
+        if(currWeight > midWeight){
+            currDays++;
+            currWeight = weight;
+        }
+    }
+
+    return currDays <= days; 
+}
