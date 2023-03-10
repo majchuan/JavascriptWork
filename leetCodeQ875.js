@@ -32,3 +32,7 @@ const checkSpeed = (piles, speed, hours) =>{
     console.log(totalHours, speed, hours);
     return totalHours >= hours ; 
 }
+
+const piles =[3,6,7,11];
+const h = 8;
+minEatingSpeed(piles,h);
