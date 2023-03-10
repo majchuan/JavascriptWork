@@ -14,9 +14,9 @@ var minEatingSpeed = function(piles, h) {
     while(left < right ){
         let mid = Math.floor((left + right)/2);
         if(checkSpeed(piles, mid, h)){
-            left = mid ;
+            left = mid + 1 ;
         }else{
-            right = mid -1 ;
+            right = mid ;
         }
     } 
 
@@ -29,10 +29,6 @@ const checkSpeed = (piles, speed, hours) =>{
     for(let p of piles){
         totalHours += Math.ceil(p/speed);
     }
-    console.log(totalHours, speed, hours);
-    return totalHours >= hours ; 
+    //console.log(totalHours, speed, hours);
+    return totalHours > hours ; 
 }
-
-const piles =[3,6,7,11];
-const h = 8;
-minEatingSpeed(piles,h);
