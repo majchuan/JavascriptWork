@@ -16,18 +16,17 @@ const travelInBudgets =(hotels,userTravelInCity, budget) =>{
     const citys = Object.keys(hotels);
     const trips = [];
     const visited = new Set();
-    dfsCityAndPrice(hotels, citys, trips, visited, userTravelInCity, [], budget);
+    dfsCityAndPrice(hotels, citys, trips, visited, userTravelInCity, [], budget, 0);
     for(let t of trips){
         console.log(t[0], t[1], t[2]);
     }
     return trips;
 }
 
-const dfsCityAndPrice = (hotels, citys, trips, visited, userTravelInCity, totalBudgets, budget) =>{
+const dfsCityAndPrice = (hotels, citys, trips, visited, userTravelInCity, totalBudgets, budget, totalSum) =>{
     if(visited.size == citys.length){
-        let sum = totalBudgets.reduce((x,y) => x + y[1] , 0);
-        if(sum < budget ){
-            trips.push([[...visited], totalBudgets.map(x => x[0]), sum]);
+        if( totalSum <= budget ){
+            trips.push([[...visited], totalBudgets.slice(), totalSum]);
         }
         return;
     }
@@ -41,8 +40,10 @@ const dfsCityAndPrice = (hotels, citys, trips, visited, userTravelInCity, totalB
                 return {day : j++ , price : x } ;
             });
             let daysSum = days.reduce((x,y) => x + y.price,0);
-            totalBudgets.push([days, daysSum]);
-            dfsCityAndPrice(hotels, citys, trips, visited, userTravelInCity, totalBudgets,budget);
+            totalSum += daysSum;
+            totalBudgets.push(days);
+            dfsCityAndPrice(hotels, citys, trips, visited, userTravelInCity, totalBudgets,budget, totalSum);
+            totalSum -= daysSum;
             totalBudgets.pop();
         }
         visited.delete(city);
@@ -95,7 +96,7 @@ const hotels ={
     amsterdam:[90,120,150,143,110]
 };
 const userTravelInCity = 2;
-const budget = 480;
+const budget = 450;
 
 
 //console.log(travelInBudgets(hotels, userTravelInCity, budget));
