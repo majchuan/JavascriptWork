@@ -17,6 +17,32 @@ var isValidSerialization = function(preorder) {
     return balance < 1;
 };
 
+var isValidSerializationDFS = function(preorder) {
+    // 将字符串转化成列表
+    let nodes = preorder.split(",");
+    return deserialize(nodes) && nodes.length === 0;
+};
+
+// 改造后的前序遍历反序列化函数
+// 详细解析：https://mp.weixin.qq.com/s/DVX2A1ha4xSecEXLxW_UsA
+var deserialize = function(nodes) {
+    if (nodes.length === 0) {
+        return false;
+    }
+
+    /****** 前序遍历位置 ******/
+    // 列表最左侧就是根节点
+    let first = nodes.shift();
+    console.log(first);
+    if (first === "#") return true;
+    /***********************/
+
+    return deserialize(nodes) && deserialize(nodes);
+};
+
+
+console.log(isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
+
 function TreeNode(val,left,right){
     this.val = (val === undefined ? null : val);
     this.left =(left === undefined ? null : left);
@@ -25,7 +51,7 @@ function TreeNode(val,left,right){
 
 
 
-const buildTree=(preorder) =>{
+const buildSearchTree=(preorder) =>{
     const stack = [] ;
     const root = new TreeNode(preorder[0]);
     stack.push(root);
@@ -49,6 +75,5 @@ const buildTree=(preorder) =>{
     return root;
 }
 
-const preorder= [10, 5, 1, 7, 40, 50];
-const preorder1=[9,3,4,1,2,6];
-console.log(buildTree(preorder1));
+const preorder1= [8,5,1,7,10,12];
+//console.log(buildTree(preorder1));

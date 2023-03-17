@@ -12,27 +12,23 @@
  * @param {TreeNode} root
  * @return {string}
  */
- var serialize = function(root) {
-    let left ="";
-    let right="";
-    if(root){
-        left = serialize(root.left);
-        right = serizlize(root.right);
-    }
-    
-    return root.val +"," +left + "," + right;
-};
+var serialize = function(root) {
+    var res = [];
 
-const dfs =(node) =>{
-    let left = null ;
-    let right = null ;
-    if(node){
-        left = node.left != null ? dfs(node.left) : null;
-        right = node.right != null ? dfs(node.right) : null;
+    function dfs(node) {
+        if (node == null) {
+            res.push("N");
+            return;
+        }
+
+        res.push(node.val.toString());
+        dfs(node.left);
+        dfs(node.right);
     }
-    
-    return node.val +"," + left +"," + right;
-}
+
+    dfs(root);
+    return res.join(",");
+};
 
 /**
  * Decodes your encoded data to tree.
@@ -41,17 +37,23 @@ const dfs =(node) =>{
  * @return {TreeNode}
  */
 var deserialize = function(data) {
-    let treeNodes = data.split(",");
-    return deserializeTree(treeNodes, 0)
-};
+    console.log(data);
+    var vals = data.split(",");
+    var i = 0;
 
-const deserialzieTree = (nodes, index) =>{
-    new TreeNode(nodes[index]);
-    this.left = nodes[index+1];
-    this.right = nodes[index+2];
-    
-}
-/**
- * Your functions will be called as such:
- * deserialize(serialize(root));
- */
+    function dfs() {
+        if (vals[i] == "N") {
+            i+=1;
+            return null;
+        }
+
+        var node = new TreeNode(Number(vals[i]));
+        i+=1;
+
+        node.left = dfs();
+        node.right = dfs();
+        return node;
+    }
+
+    return dfs();
+};
