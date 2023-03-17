@@ -68,3 +68,84 @@ const BuildBSTByStack =(postOrder) =>{
 
     return root;
 }
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ * Q
+ * use a preOrder and BFS to build a binary tree, notice this is not a binary search tree. it is a binary tree by 
+ * using preOrder. you need insert ## for null means it reach end of the tree.
+ * Q297
+ */
+
+/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var serialize = function(root) {
+    if (!root) return '';
+
+    const queue = [root];
+    const resArr = [];
+    
+    while (queue.length > 0) {
+        let currQueue = queue.length;
+        
+        while (currQueue--) {
+            const node = queue.shift();
+            
+            if (!node) {
+                resArr.push('null');
+                continue;
+            }
+            
+            resArr.push(node.val);
+            queue.push(node.left);
+            queue.push(node.right);
+        }
+    }
+    
+    return resArr.join(',');
+};
+
+/**
+ * Decodes your encoded data to tree.
+ *
+ * @param {string} data
+ * @return {TreeNode}
+ */
+var deserialize = function(data) {
+    if (!data || data.length === 0) return null;
+    
+    const valArr = data.split(',');
+
+    if (valArr.length === 1) return new TreeNode(valArr.shift());
+    
+    const root = new TreeNode(valArr.shift());
+    
+    const queue = [root];
+    
+    for (let i = 0; i < valArr.length; i++) {
+        const leaf = queue.shift();
+        
+        if (valArr[i] !== 'null') {
+            const leftLeaf = new TreeNode(valArr[i]);
+            leaf.left = leftLeaf;
+            queue.push(leftLeaf);
+        }
+        
+        if (valArr[++i] !== 'null') {
+            const rightLeaf = new TreeNode(valArr[i]);
+            leaf.right = rightLeaf;
+            queue.push(rightLeaf);
+        }
+    }
+        
+    return root;
+};
