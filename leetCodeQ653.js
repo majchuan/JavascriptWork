@@ -18,32 +18,74 @@ function TreeNode(val, left, right) {
     this.right = (right===undefined ? null : right)
 }
  
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {boolean}
+ */
 var findTarget = function(root, k) {
-    const hash_k ={};
-    dfs(root,k , hash_k);
+    const hash_node ={};
+    return dfs(root, hash_node, k);
+};
 
-    for(let key in hash_k){
-        if(hash_k[key]) return true;
+const dfs=(node, hash_node, k) =>{
+    if(node == null) return false;
+
+    if(hash_node[k-node.val]){
+        return true;
+    }else{
+        hash_node[node.val] = true;
+    }
+    return dfs(node.left, hash_node, k) || dfs(node.right, hash_node, k);
+}
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {boolean}
+ */
+var findTargetPreOrderApproach = function(root, k) {
+    const preOrders = [];
+    const hash_k ={};
+    dfsPreOrder(root, preOrders);
+
+    for(let num of preOrders){
+        if(hash_k[k-num] != null){
+            return true;
+        }else{
+            hash_k[num] = true;
+        }
     }
 
     return false;
 };
 
-const dfs = (node, k , hash_k) =>{
+const dfsPreOrder=(node, preOrders) =>{
+    if(node == null) return null;
 
-    if(node == null) {
-        return null ;
-    }
+    preOrders.push(node.val);
+    dfsPreOrder(node.left, preOrders);
+    dfsPreOrder(node.right, preOrders);
 
-    const leftNode = dfs(node.left, k , hash_k) ;
-    if(hash_k[k-node.val] != null){
-        hash_k[node.val] = true ;
-        hash_k[k-node.val] = true;
-    }else{
-        hash_k[node.val] = false;
-    }
-    const rightNode = dfs(node.right, k, hash_k);
 }
+
+
 
 root = [5,3,6,2,4,null,7], k = 9
 
