@@ -2,8 +2,8 @@
  * @param {string} homepage
  */
 var BrowserHistory = function(homepage) {
-    this.frwd = []
-    this.backward = [homepage]
+    this.history = []
+    this.stack = [homepage]
 };
 
 /** 
@@ -11,8 +11,8 @@ var BrowserHistory = function(homepage) {
  * @return {void}
  */
 BrowserHistory.prototype.visit = function(url) {
-    this.backward.push(url)
-    this.frwd = []
+    this.stack.push(url)
+    this.history = []
 };
 
 /** 
@@ -20,10 +20,10 @@ BrowserHistory.prototype.visit = function(url) {
  * @return {string}
  */
 BrowserHistory.prototype.back = function(steps) {
-    while(this.backward.length > 1 && steps-- > 0){
-        this.frwd.push(this.backward.pop())
+    while(this.stack.length > 1 && steps-- > 0){
+        this.history.push(this.stack.pop())
     }
-    return this.backward[this.backward.length-1]
+    return this.stack[this.stack.length-1]
 };
 
 /** 
@@ -31,10 +31,10 @@ BrowserHistory.prototype.back = function(steps) {
  * @return {string}
  */
 BrowserHistory.prototype.forward = function(steps) {
-    while(this.frwd.length > 0 && steps-- > 0){
-        this.backward.push(this.frwd.pop())
+    while(this.history.length > 0 && steps-- > 0){
+        this.stack.push(this.history.pop())
     }
-    return this.backward[this.backward.length-1]
+    return this.stack[this.stack.length-1]
 };
 
 /** 
