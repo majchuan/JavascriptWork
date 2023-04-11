@@ -46,30 +46,22 @@ var repeatedStringMatch = function(a, b) {
 
 const checkSubString = (s1, s2) =>{
     let left1 = 0 , left2 = 0 ;
+    let checkLength = 0;
     if(s1.length < s2.length) return false; 
     while(left1 < s1.length){
-        let left = left1;
-        while(left < s1.length && left2 < s2.length){
-            if(s1[left]!= s2[left2]){
-                left2 = 0;
-                break;
-            }else{
-                left++;
-                left2++;
-            }
+        while(s1[left2] == s2[checkLength]){
+            left2++;
+            checkLength++;
+            if(checkLength == s2.length) return true;
         }
         left1++;
-        if(left2 == s2.length){
-            return true;
-        }else{
-            left2 = 0;
-        }
+        left2=left1;
+        checkLength = 0;
     }
-
 
     return false;
 }
 
 const a="abcd" , b = "cdabcdab";
 const a1="abc" , b1="cabcabca";
-console.log(repeatedStringMatch(a,b));
+console.log(repeatedStringMatch(a1,b1));
