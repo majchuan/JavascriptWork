@@ -67,3 +67,6 @@ var singleNonDuplicateSlow = function(nums) {
     }
     
 };
+
+const nums = [1,2,2,3,3,4,4,8,8];
+console.log(singleNonDuplicate(nums));
