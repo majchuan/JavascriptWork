@@ -4,14 +4,14 @@
  */
 var longestObstacleCourseAtEachPosition = function(obstacles) {
     let n = obstacles.length;
-    const result = [], list = []; 
+    const result = [], dp = []; 
 
     for(let i = 0 ; i < n ; i++){
         const height = obstacles[i];
-        let idx = findRightPosition(list,height,list.length);
+        let pos = findRightPosition(dp,height,dp.length);
 
-        list[idx] = height;
-        result[i] = idx+1;
+        dp[pos] = height;
+        result[i] = pos+1;
     }
 
     return result;
