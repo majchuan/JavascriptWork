@@ -3,6 +3,28 @@
  * @param {number} k
  * @return {number}
  */
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var minimalKSumFasterApproach = function(nums, k) {
+    const exist = new Set(nums)
+     let sum = (1 + k) * k / 2;
+     let nextToAdd = k + 1;
+     for (const num of exist) {
+         if (num <= k) {
+             while(exist.has(nextToAdd)) {
+                 nextToAdd++
+             }
+             // console.log('got', num, 'added', nextToAdd)
+             sum = sum - num + nextToAdd
+             nextToAdd++
+         }
+     }
+     return sum
+ };
+
 var minimalKSum = function(nums, k) {
     let sum = 0 ;
     nums.sort((x,y) => x-y);
