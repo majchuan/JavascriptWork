@@ -36,6 +36,28 @@
     return result;
 };
 
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrderFasterApproach = function(matrix) {
+    let res = [];
+
+    while(matrix.length) {
+        let curr = matrix.shift();
+        res.push(...curr);
+        for(let row of matrix) {
+            let end = row.pop();
+            if(end) {
+                res.push(end);
+                row.reverse()
+            }
+        }
+        matrix.reverse();
+    }
+    return res;
+};
+
 const matrix = [[1,2,3],[4,5,6],[7,8,9]];
 const matrix1= [[1,2,3,4],[5,6,7,8],[9,10,11,12]];
 console.log(spiralOrder(matrix1));
