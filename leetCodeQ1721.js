@@ -51,7 +51,7 @@ var swapNodesSlower = function(head, k) {
         left++;
         curr = curr.next;
     }
-    console.log(slow.val, fast.val)
+
     let temp = slow.val;
     slow.val = fast.val;
     fast.val = temp;
