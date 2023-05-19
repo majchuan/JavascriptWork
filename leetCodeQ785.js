@@ -2,6 +2,12 @@
  * @param {number[][]} graph
  * @return {boolean}
  */
+/*
+*We will choose 2 colors 0 and 1.
+*We should be able to color all the nodes where each neighbour is colored with a different color.
+*None of the 2 neighbours should be colored with the same color.
+*/
+
 var isBipartite = function(graph) {
     const hash_graph = {};
 
