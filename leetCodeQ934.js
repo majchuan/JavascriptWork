@@ -31,9 +31,9 @@ var shortestBridge = function(grid) {
 			for (let j = 0; j < dirs.length; j++) {
 				let nx = x + dirs[j][0];
 				let ny = y + dirs[j][1];
-				if (nx >= 0 && nx < m && ny >= 0 && ny < n && A[nx][ny] !== -1) {
-					if (A[nx][ny] === 1) return step;
-					A[nx][ny] = -1;
+				if (nx >= 0 && nx < m && ny >= 0 && ny < n && grid[nx][ny] !== -1) {
+					if (grid[nx][ny] === 1) return step;
+					grid[nx][ny] = -1;
 					queue.push(nx*m + ny);
 				}
 			}
@@ -54,3 +54,5 @@ var shortestBridge = function(grid) {
 		dfs(i, j+1);
 	}
 };
+
+
