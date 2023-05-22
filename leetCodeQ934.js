@@ -20,6 +20,7 @@ var shortestBridge = function(grid) {
 		if (hasFind) break;
 	}
 
+	
 	while (queue.length) {
 		const size = queue.length;
 
@@ -56,3 +57,8 @@ var shortestBridge = function(grid) {
 };
 
 
+const grid = [[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]];
+const grid1=[[0,1,0],[0,0,0],[0,0,1]];
+const grid2 =[[0,1,0,0,0,0],[0,1,1,1,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[1,1,0,0,0,0]]
+
+console.log(shortestBridge(grid2));
