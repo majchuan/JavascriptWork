@@ -15,7 +15,7 @@ const regularArray =[10,9,1,5,6,8,2,4,3,7,0]
 const quickSort =(regularArray, left , right) =>{
     let index = 0;
     if(regularArray.length > 1){
-        index = partionElement(regularArray,left, right);
+        index = partionElement(regularArray, left, right);
         if(left < index){
             quickSort(regularArray, 0 , index);
         }
