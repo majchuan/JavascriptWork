@@ -14,15 +14,37 @@ var calcEquation = function(equations, values, queries) {
         neighbors[B] ? neighbors[B].push([A, 1/currValue]) : neighbors[B] =[[A,1/currValue]]; 
     }
     
-    let result = [];
+    const resultDFS = [];
+    const resultBFS =[];
     for (let query of queries) {
-        result.push(evaluate(query, neighbors));
+        const val = evaulateDFS(query, neighbors,new Set(), 1);
+        resultDFS.push(val ? val : -1);
+        resultBFS.push(evaluateBFS(query, neighbors)); //BFS
     }
     
-    return result;
+    return resultDFS ; // resultBFS;
 };
 
-function evaluate(query, neighbors) {
+const evaulateDFS = (query, neighbors, visited, currVal) =>{
+    const [C,D] = query;
+    if(neighbors[C] ==null || neighbors[D] == null ) return -1;
+
+    if(C==D) return currVal;
+
+    const next = neighbors[C];
+    if(next == null) return -1; 
+    visited.add(C);
+
+    for(const [variable, value] of next){
+        if(visited.has(variable)) continue;
+        const result = dfs( [variable,D], neighbors, visited, currVal * value);
+        if(result != null) return result;
+    }
+
+    return null;
+}
+
+const evaluateBFS=(query, neighbors)=>{
     const [C, D] = query;
     if(neighbors[C] == null || neighbors[D] == null) return -1;
     if (C === D) return 1;
