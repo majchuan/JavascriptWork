@@ -23,3 +23,4 @@ var equalPairs = function(grid) {
     }
     return count
 };
+
