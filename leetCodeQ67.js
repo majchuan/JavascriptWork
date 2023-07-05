@@ -62,18 +62,23 @@ const b ="1011";
 *Faster approach
 */
 var addBinaryFastApproach = function(a, b) {
-    const A = a.split('')
-    const B = b.split('')
-    let up = 0
-    let ans = ''
-    while (A.length > 0 || B.length > 0) {
-        const x = A.length > 0 ? +A.pop() : 0
-        const y = B.length > 0 ? +B.pop() : 0
-        ans = (x + y + up) % 2 + ans
-        up = (x + y + up) > 1 ? 1 : 0
+    const binaryA = a.split("");
+    const binaryB = b.split("");
+ 
+    let carryOn = 0 ;
+    let result = "";
+ 
+    while(binaryA.length > 0 || binaryB.length > 0){
+        const x = binaryA.length > 0 ? +parseInt(binaryA.pop()) : 0 ;
+        const y = binaryB.length > 0 ? +parseInt(binaryB.pop()) : 0 ;
+        result = ( x + y + carryOn) % 2 + result ;
+        carryOn =(x + y + carryOn) > 1 ? 1: 0 ;
+    } 
+    if(carryOn == 1) {
+        result = carryOn + result ;
     }
-    if (up) ans = up + ans
-    return ans
+ 
+    return result;
 };
 
 /**
