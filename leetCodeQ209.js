@@ -3,7 +3,35 @@
  * @param {number[]} nums
  * @return {number}
  */
+/*
+*Sliding windows
+*/
 var minSubArrayLen = function(target, nums) {
+    let left = 0 , right = 0 ;
+    let sum = 0 ;
+    let minLength = Number.MAX_SAFE_INTEGER ;
+
+    while(right < nums.length){
+        sum += nums[right];
+
+        while(sum >= target){
+            minLength = Math.min(minLength, right - left + 1);
+            sum -= nums[left];
+            left++;
+        }
+
+        right++;
+    }
+
+    return minLength == Number.MAX_SAFE_INTEGER ? 0 : minLength;
+};
+
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLenSlowApproach = function(target, nums) {
     let start  = 0, end = 0 ;
     let sumOfNums = 0 ;
     const minSubArray={
