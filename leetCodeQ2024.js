@@ -61,3 +61,4 @@ var maxConsecutiveAnswersSlowApproach = function(answerKey, k) {
 
     return maxLength;
 };
+
