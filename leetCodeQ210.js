@@ -102,49 +102,51 @@ const numCourses1 =2, prerequisites1=[[0,1]];
 console.log(findOrder(numCourses1,prerequisites1));
 
 
-/*
-let visited;
-let graph;
-let stack;
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {number[]}
+ */
+var findOrderEasyUnderstand = function(numCourses, prerequisites) {
+    const preCourses = {};
+    const result= new Set();;
+    const visited = new Set();
 
-var findOrder = function(numCourses, prerequisites) {
-    
-    graph = new Map();
-    visited = new Array(numCourses).fill(0);
-    stack = new Array();
-    
-    for(let [v, e] of prerequisites){
-        if(graph.has(v)){
-            let values = graph.get(v);
-            values.push(e);
-            graph.set(v, values)
-        } else {
-            graph.set(v, [e])
+    for(let course of prerequisites){
+        preCourses[course[0]] ? preCourses[course[0]].add(course[1]) : preCourses[course[0]] = new Set().add(course[1]);
+    }
+
+    for(let i = 0 ; i < numCourses; i++){
+        if(dfsEasyUnderstand(i, preCourses, visited, result) == false){
+            return [];
         }
     }
-    
-    for(let i = 0; i < numCourses; i++){
-        if(visited[i] == 0 && DFS(i)) return [];
-    }
-    
-    return stack;
-}
+
+    return [...result];
+};
 
 
-function DFS(index){
-    
-    visited[index] = 1;
-    let edges = graph.get(index);
-    
-    if(edges){
-        for(let e of edges){
-            if(visited[e] == 1) return true;
-            if(visited[e] == 0 && DFS(e)) return true
-        }  
+const dfsEasyUnderstand=(courseIndex, preCourses, visited, result) =>{
+    if(visited.has(courseIndex)) return false;
+
+    visited.add(courseIndex);
+
+    const courses = preCourses[courseIndex];
+
+    if(courses == null){
+        result.add(courseIndex);
+        visited.delete(courseIndex);
+        return true;
     }
-  
-    visited[index] = 2;
-    stack.push(index)
-    return false
+
+    for(let currCourse of courses){
+        if(dfsEasyUnderstand(currCourse, preCourses, visited, result) == false){
+            return false;
+        }
+    }
+
+    visited.delete(courseIndex);
+    preCourses[courseIndex].clear();
+    result.add(courseIndex);
+    return true;
 }
-*/
