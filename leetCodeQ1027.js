@@ -21,3 +21,7 @@ var longestArithSeqLength = function(nums) {
     }
     return maxLength;
 };
+
+
+
+console.log(5+ +"6");
