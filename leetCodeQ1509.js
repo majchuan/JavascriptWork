@@ -8,7 +8,7 @@ var minDifference = function(nums) {
 };
 
 const search =(nums,left,right, count) =>{
-    if(left > right) return 0; 
+    if(left >= right) return 0; 
     if(count == 0) return nums[right] - nums[left];
     return Math.min(
         search(nums,left, right -1 , count -1),
