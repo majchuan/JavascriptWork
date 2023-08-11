@@ -25,3 +25,6 @@ const dfs=(coins ,amount, visited) =>{
 
     return minSteps+1;
 }
+
+const coins=[1,2,5], amount = 5;
+console.log(coinChange(coins, amount));
