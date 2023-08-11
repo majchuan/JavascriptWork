@@ -38,3 +38,37 @@ var mincostTickets = function(days, costs) {
     return dp[dp.length -1];
 
 };
+
+/*
+*Dynamic Programming dp, top to bottom with memo. 
+*/
+
+/**
+ * @param {number[]} days
+ * @param {number[]} costs
+ * @return {number}
+ */
+var mincostTickets = function(days, costs) {
+    const visitedDays = new Array(days[days.length -1] +1).fill(-1);
+    return dfs(days, costs, 1 , visitedDays);
+};
+
+const dfs=(days, costs, currDay, visitedDays)=>{
+    if(currDay > days[days.length-1]){
+        return 0 ;
+    }
+
+    if(days.includes(currDay) == false){
+        return dfs(days, costs, currDay+1, visitedDays);
+    }
+
+    if(visitedDays[currDay] != -1){
+        return visitedDays[currDay];
+    }
+
+    let day1 = costs[0] + dfs(days, costs, currDay+1, visitedDays);
+    let day7 = costs[1] + dfs(days, costs, currDay+7, visitedDays);
+    let day30 = costs[2] + dfs(days,costs, currDay+30, visitedDays);
+
+    return visitedDays[currDay] = Math.min(day1, day7, day30);
+}
