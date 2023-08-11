@@ -10,7 +10,6 @@ var change = function(amount, coins) {
     }
 
     let result = dfs(0, amount, coins , visited);
-    console.log(visited);
     return result;
 };
 
