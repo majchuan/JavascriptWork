@@ -2,37 +2,26 @@
  * @param {string} s
  * @return {string}
  */
- var reorganizeString = function(s) {
+var reorganizeString = function(s) {
     const s_hash= {} ;
     for(let str of s){
         s_hash[str] ? s_hash[str]++ : s_hash[str] = 1 ;
     }
-    
-    let maxValue = 0 ;
-    let maxKey = ""
-    for(let key in s_hash ){
-        if(maxValue < s_hash[key]) {
-            maxKey = key;
-            maxValue = s_hash[key]; 
-        }
+
+    let sortedKeys = Object.keys(s_hash).sort((a,b) => s_hash[b] - s_hash[a]);
+    let maxValue = s_hash[sortedKeys[0]];
+    let restValueSum = 0;
+    for(let i = 1 ; i< sortedKeys.length ; i++){
+        restValueSum += s_hash[sortedKeys[i]];
     }
-    
-    let restValueSum = 0 ;
-    
-    for(let key in s_hash){
-        if(key != maxKey){
-            restValueSum += s_hash[key];
-        }
-    }
-    
+
     if(maxValue - restValueSum > 1) {
         return "";
     }else{
         let result =[];
         let position = 0;
-        let sorted = Object.keys(s_hash).sort((a,b) => s_hash[b] - s_hash[a]);
-        for(let i = 0 ; i < sorted.length ; i++){
-            let hash_key =sorted[i];
+        for(let i = 0 ; i < sortedKeys.length ; i++){
+            let hash_key =sortedKeys[i];
             let hash_value = s_hash[hash_key];
             for(let i =0 ; i < hash_value ; i++){
                 if(position >= s.length ) position = 1
