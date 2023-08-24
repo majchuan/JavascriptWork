@@ -121,4 +121,5 @@ const adjustLine=(words, start ,end, maxWidth)=>{
 
 
 const words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16;
+const words1= words = ["What","must","be","acknowledgment","shall","be"], maxWidth1 = 16
 console.log(fullJustify(words, maxWidth));
