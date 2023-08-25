@@ -3,29 +3,32 @@
  * @param {number} k
  * @return {string}
  */
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
 var decodeAtIndex = function(s, k) {
-    let lens = [isNum(s[0]) ? 0 : 1];
-    for (let i = 1; i < s.length; i++) {
-        let char = s[i];
-        if (isNum(char)) {
-            lens.push(lens[i - 1] * char);
-        } else {
-            lens.push(lens[i - 1] + 1);
-        }
-    }
-    console.log(lens);
-
-    for (let i = s.length - 1; i >= 0; i--) {
-        k %= lens[i];
-        console.log(k, lens[i] , i);
-        if (k === 0 && !isNum(s[i])) return s[i];
-    }
-};
-
-var isNum = function(char) {
-    return char >= 0 && char <= 9;
-}
-
+    let size = BigInt(0);
+ 
+     for (let index = 0; index < s.length; index++) {
+         const str = s[index];
+ 
+         size = isNaN(str) ? size + BigInt(1) : size * BigInt(str);
+     }
+ 
+     for (let index = s.length - 1; index >= 0; index--) {
+         const str = s[index];
+         const isNumber = !isNaN(str);
+ 
+         k = BigInt(k) % size;
+         if ((k == 0 || k == size) && !isNumber) return str;
+ 
+         size = isNumber ? size / BigInt(str) : size - BigInt(1);
+     }
+     return '';  
+ };
+ 
 var decodeAtIndexOutOfMemoery = function(s, k) {
     let stack = [];
     let left = 0 ;
