@@ -22,13 +22,13 @@ var decodeAtIndex = function(s, k) {
          const isNumber = !isNaN(str);
  
          k = BigInt(k) % size;
-         if ((k == 0 || k == size) && !isNumber) return str;
+         if (k == 0 && !isNumber) return str;
  
          size = isNumber ? size / BigInt(str) : size - BigInt(1);
      }
      return '';  
  };
- 
+
 var decodeAtIndexOutOfMemoery = function(s, k) {
     let stack = [];
     let left = 0 ;
