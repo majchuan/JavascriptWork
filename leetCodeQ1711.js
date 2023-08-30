@@ -10,12 +10,12 @@ var countPairs = function(deliciousness) {
     for(let i = 0 ; i < n ; i++){
         for(let j = 21 ; j >= 0 ; j--){
 
-            const sqr = 2**j ;
+            const square = 2**j ;
             
-            if(sqr - deliciousness[i] < 0 ) break;
+            if(square - deliciousness[i] < 0 ) break;
 
-            if(hash_d[sqr - deliciousness[i]]){
-                result += hash_d[sqr - deliciousness[i]];
+            if(hash_d[square - deliciousness[i]]){
+                result += hash_d[square - deliciousness[i]];
             }
         }
         hash_d[deliciousness[i]] ? hash_d[deliciousness[i]]++ : hash_d[deliciousness[i]] = 1 ;
