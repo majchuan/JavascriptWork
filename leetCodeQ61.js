@@ -38,3 +38,42 @@ var rotateRight = function(head, k) {
     }
     
 };
+
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+var rotateRightWithoutToUseArray = function(head, k) {
+    let length = 0 ;
+    let currNode = head;
+    if(head == null) return null;
+    while(currNode.next != null){
+        length++;
+        currNode = currNode.next;
+    }
+   
+    k = k % (length+1);
+    
+    //two pointer, establish fastNode.
+    let fastNode = head;
+    for(let i =0; i < k ; i++){
+        fastNode = fastNode.next;
+    }
+    
+    //start slowNode from head until fastNode to the end.
+    let slowNode = head;
+    while(fastNode.next != null){
+        fastNode = fastNode.next;
+        slowNode = slowNode.next;
+    }
+    
+    //make head to fastNode.next , so fastNode point to head node 
+    //make slowNode.next is new head node.
+    //make slowNode.next point to null, which means set it to end node.
+    fastNode.next = head; 
+    const newHeadNode = slowNode.next;
+    slowNode.next = null;
+    
+    return newHeadNode;
+};
