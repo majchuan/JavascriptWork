@@ -29,6 +29,34 @@ var findDuplicateByBinarySearch = function(nums) {
     return left;
 };
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findDuplicateBinarySearch_1 = function(nums) {
+    let left = 1 , right = nums.length - 1;
+    let duplicate = -1;
+
+    while(left <= right){
+        let mid = Math.floor((left+right)/2);
+        let count = 0 ;
+        for(let num of nums){
+            if(num <= mid){
+                count++;
+            }
+        }
+
+        if(count > mid){
+            duplicate = mid;
+            right = mid -1;
+        }else{
+            left = mid+1;
+        }
+    }
+
+    return duplicate ; 
+};
+
 /*
 *Use two pointer, slow and fast pointer, if it has repeat number ,it must have cycle , use first do while loop find 
 entry point of cycle. use second to find repeat number
