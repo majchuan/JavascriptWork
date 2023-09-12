@@ -16,28 +16,40 @@ var combinationSum4 = function(nums, target) {
     }
     return dp[target];
 };
-/*
-* over time limit solution.
-*/
- var combinationSum4SlowApproach = function(nums, target) {
-    let totalNumber = 0 ;
-    const dfs=(nums, target, sum , index) =>{
-        if(sum > target) return ; 
-        if(sum == target){
-            totalNumber++;
-            return;
-        }
-        
-        for(let i = 0 ; i < nums.length; i++){
-            dfs(nums,target, sum+nums[i], i) ;
-        }
-        
-        return ;
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var combinationSum4WithMemoApproach = function(nums, target) {
+    const memo = {};
+    return dfs(nums, target, memo, 0);
+};
+
+const dfs=(nums, target , memo, sum) =>{
+    let totalCount =  0;
+    
+    if(sum == target){
+        return 1;
     }
 
-    dfs(nums,target, 0 , 0);
-    return totalNumber;
-};
+    if(sum > target){
+        return 0 ;
+    }
+
+    if(memo[sum] != null) return memo[sum];
+
+    for(let i = 0 ; i < nums.length; i++){
+        sum += nums[i];
+        totalCount += dfs(nums, target , memo, sum);
+        sum -= nums[i];
+    }
+
+    memo[sum] = totalCount;
+
+    return totalCount;
+}
 
 
 const nums =[1,2,3], target = 32;
