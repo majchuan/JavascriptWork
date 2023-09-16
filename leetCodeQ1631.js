@@ -29,7 +29,7 @@ const dfs=(m,n,currRow, currColumn, heights, mid, visited) =>{
 
     let key = currRow.toString()+"|"+currColumn.toString();
     if(visited.has(key)){ 
-        return visited[key];
+        return visited.get(key);
     }
 
     visited.set(key, false);
@@ -55,20 +55,18 @@ const dfs=(m,n,currRow, currColumn, heights, mid, visited) =>{
 }
 
 const binarySearch = (left ,right, m, n , heights) =>{
-    let result = -1;
     while(left <= right){
         let mid = Math.floor((left+right)/2);
         let ans = dfs(m , n, 0 , 0 , heights, mid, new Map());
 
         if(ans){
             right = mid -1 ;
-            result = mid ;
         }else{
             left = mid+1;
         }
     }
 
-    return result;
+    return left;
 }
 
 const heights = [[1,2,2],[3,8,2],[5,3,5]];
