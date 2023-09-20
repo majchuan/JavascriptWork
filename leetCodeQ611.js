@@ -54,3 +54,6 @@ const binarySearch=(nums, left , right , threshold) =>{
 
     return left;
 }
+
+const nums=[2,2,3,4];
+console.log(triangleNumberBinarySearchApproach(nums));
