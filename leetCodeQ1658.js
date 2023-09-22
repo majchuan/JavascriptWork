@@ -3,6 +3,26 @@
  * @param {number} x
  * @return {number}
  */
+/*
+To solve this problem lets suppose answer exists
+
+in this case sum of middle subarray will be equal to totalSum-x
+
+I have to minimixe the left and right element of a array thats meanwe have to maximize the number element of a subarray which present in the array which sum equal to tatolSum-x
+[...left , totalSum -x , ...right];
+
+To find the max middle subarray element or length
+
+we will use sliding window technique/two pointer approach
+
+initially we will set left and right pointer at 0 index
+We will move right pointer until CurrSum > totalSum - x
+if CurrSum > totalSum - x we will move left pointer and also check the condition that l<=r
+Update our maxLength if and only if currSum == totalSum - x
+Repeat the above steps until we reach the end of the array.
+At last if we did not find any such window we will return -1 as answer
+
+*/
  var minOperations = function(nums, x) {
     let target = - x;
     for(const n of nums) {
@@ -41,5 +61,5 @@ const nums1 =[5207,5594,477,6938,8010,7606,2356,6349,3970,751,5997,6114,9903,385
     5628,4833,8379,3967,5649,2554,5828,4331,3547,7847,5433,3394,4968,9983,3540,9224,6216,9665,8070,31,3555,
     4198,2626,9553,9724,4503,1951,9980,3975,6025,8928,2952,911,3674,6620,3745,6548,4985,5206,5777,1908,6029,
     2322,2626,2188,5639], x1= 565610;
-
-console.log(minOperations(nums1,x1));
+const nums2 = [3,2,20,1,1,3], x2 = 10
+console.log(minOperations(nums2,x2));
