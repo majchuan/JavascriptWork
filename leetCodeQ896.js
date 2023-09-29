@@ -10,3 +10,40 @@ var isMonotonic = function(nums) {
         return false;
     }
 };
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var isMonotonicFastApproach = function(nums) {
+    let index = 1 ;
+    let decrease = false ;
+    let increase = false;
+    if(nums.length == 1) return true ; 
+    
+    if(nums[index-1] >= nums[index]){
+        while(index < nums.length){
+            if(nums[index-1] < nums[index]){
+                decrease = false;
+                break;
+            }
+            index++;
+            decrease = true;
+        }
+    }
+
+    index = 1 ;
+    if(nums[index-1] <= nums[index]){
+        while(index < nums.length){
+            if(nums[index-1] > nums[index]){
+                increase = false;
+                break;
+            }
+            index++;
+            increase = true;
+        }
+    }
+
+    return increase || decrease ; 
+
+};
