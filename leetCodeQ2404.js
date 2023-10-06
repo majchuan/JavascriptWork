@@ -29,3 +29,33 @@ var mostFrequentEven = function(nums) {
 
     return result[0];
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var mostFrequentEvenFastApproach = function(nums) {
+    const hash_nums ={};
+    let result =  -1;
+    let maxFreq = 0 ;
+    for(let num of nums){
+        var freq =0;
+        if(num % 2 == 0){
+            if(hash_nums[num] != null){
+                hash_nums[num] +=1;
+                freq = hash_nums[num];
+            }else{
+                hash_nums[num] = 1 ;
+                freq= hash_nums[num];
+            }
+
+
+            if(freq > maxFreq || (freq == maxFreq && result > num )){
+                result = num ; 
+                maxFreq = freq;
+            }
+        }
+    }
+
+    return result;
+};
