@@ -21,4 +21,4 @@ const dfs= (n, k, node) =>{
     }
 }
 
-console.log(kthGrammar(10, 5));
+console.log(kthGrammar(10, 9));
