@@ -32,3 +32,5 @@ var sortString = function(s) {
 const appendCharToResult = (i) =>{
     return String.fromCharCode(i+97);
 }
+
+console.log(sortString("aaabbbcccbbbaaa"));
