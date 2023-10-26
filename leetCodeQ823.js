@@ -22,3 +22,5 @@ var numFactoredBinaryTrees = function(arr) {
 
     return Object.values(hash_arr).reduce((a,b) => a+b, 0) % (10**9 + 7);
 };
+
+console.log(numFactoredBinaryTrees([2,3,4]));
