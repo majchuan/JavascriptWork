@@ -20,3 +20,5 @@ const dfs= (n, k, node) =>{
         return dfs(n-1, k , nextNodeVal); 
     }
 }
+
+console.log(kthGrammar(10, 9));
