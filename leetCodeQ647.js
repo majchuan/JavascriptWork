@@ -40,27 +40,31 @@ const checkPalindromic =(s)=>{
 const s = "abc" ; 
 //console.log(countSubstrings(s));
 
-/*
-*Fast approach
-*/
- var countSubstringsFastApproach = function (s) {
-    let ans = 0
-  
-    for (let i = 0; i < s.length; i++) {
-      getPalindrome(i, i);
-      getPalindrome(i, i + 1);
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countSubstringsFasterFunction = function(s) {
+    let result =  0;
+
+    for(let i = 0 ; i < s.length ; i++){
+        result +=findPalindrom(s, i, i);
+        result +=findPalindrom(s, i, i+1);
     }
-  
-    function getPalindrome(l, r) {
-      while (l >= 0 && r < s.length && s[l] === s[r]) {
-          console.log(l,r,s[l],s[r]);
-        ans++
-        l--
-        r++
-      }
+
+    return result;
+};
+
+const findPalindrom = (s, left, right) =>{
+    let counter = 0 ;
+    while(left >= 0 && right < s.length){
+        if(s[left] != s[right]) return counter;
+        counter++;
+        left--;
+        right++;
     }
-  
-    return ans
+
+    return counter;
 }
 
 console.log(countSubstringsFastApproach("aaa"));
