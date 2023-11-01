@@ -25,7 +25,6 @@ const isValidBSTHelp = (node, min, max) =>{
 var isValidBSTInorder = function(root) {
     const inOrderArr =[];
     dfs(root,inOrderArr);
-    console.log(inOrderArr);
     for(let i = 0 ; i< inOrderArr.length-1; i++){
         if(inOrderArr[i] >= inOrderArr[i+1]){
             return false

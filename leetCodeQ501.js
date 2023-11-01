@@ -38,3 +38,42 @@ const searchMode =(node ,hash_mode) =>{
     searchMode(node.left, hash_mode);
     searchMode(node.right, hash_mode);
 }
+
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var findModeFastFunction = function(root) {
+
+    let modes = [];
+    let prev = root;
+    let count = 0;
+    let max = 0;
+      
+    function inOrder(node) {
+        
+        if (node === null) return;
+        
+        inOrder(node.left);
+        
+        count = prev.val === node.val ? count + 1 : 1;
+        prev = node;
+        // console.log('count', count)
+        // console.log(node.val, node.left, node.right)
+        // console.log('max', max)
+        
+        if (count === max) {
+            modes.push(node.val);
+        }
+        else if (count > max) {
+            modes = [node.val];
+            max = count;
+        }
+        
+        inOrder(node.right);
+        
+    }
+      
+      inOrder(root);
+      return modes;
+  };
