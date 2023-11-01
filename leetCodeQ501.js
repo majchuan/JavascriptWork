@@ -58,9 +58,6 @@ var findModeFastFunction = function(root) {
         
         count = prev.val === node.val ? count + 1 : 1;
         prev = node;
-        // console.log('count', count)
-        // console.log(node.val, node.left, node.right)
-        // console.log('max', max)
         
         if (count === max) {
             modes.push(node.val);
