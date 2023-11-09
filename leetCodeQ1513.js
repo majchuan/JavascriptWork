@@ -28,3 +28,25 @@ var numSub = function(s) {
 
     return result % (Math.pow(10,9) + 7);
 };
+
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var numSubFastFunction = function(s) {
+    let count = 0;
+    let mod = 1e9 + 7;
+    let result = 0;
+
+    for( let i = 0; i< s.length; i++ ) {
+        if( s[i] === "1") {
+            count++;
+            result = ( result + count ) % mod;
+        } else {
+            count = 0;
+        }
+    }
+    
+    return result;
+};
