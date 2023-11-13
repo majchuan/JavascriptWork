@@ -18,11 +18,8 @@ const dfs=(tiles, result, curr, visited ) =>{
     for(let i = 0 ; i < tiles.length ; i++){
         if(visited.has(i)) continue;
         visited.add(i);
-        var temp = curr;
-        curr += tiles[i];
-        sum +=dfs(tiles,result, curr,visited);
+        sum +=dfs(tiles,result, curr + tiles[i] ,visited);
         visited.delete(i);
-        curr = temp; 
     }
 
     return sum;
