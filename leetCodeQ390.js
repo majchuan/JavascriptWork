@@ -16,7 +16,7 @@ var lastRemaining = function(n) {
         left =! left
         remain = Math.floor(remain/2)
     }
-    return head
+    return
 };
 
 const n = 9 ;
