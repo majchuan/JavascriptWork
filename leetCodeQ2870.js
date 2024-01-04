@@ -50,3 +50,44 @@ var minOperationsExplainMath = function (nums) {
     }
     return ops;
   }
+
+
+  /**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minOperationsBrutalForce = function(nums) {
+    const hash_nums = {};
+    let result = 0 ;
+    for(let num of nums){
+        hash_nums[num] ? hash_nums[num]++ : hash_nums[num] = 1 ;
+    }
+
+    for(let key in hash_nums){
+        if(hash_nums[key] == 1) return -1;
+        if(hash_nums[key] % 2 == 0 && hash_nums[key] % 3 != 0){
+            result += checkMinSteps(hash_nums[key], hash_nums[key] / 2, 0);
+        }else if(hash_nums[key] % 3 == 0){
+            result += hash_nums[key] / 3; 
+        }else if(hash_nums[key] % 2 != 0 && hash_nums[key] % 3 != 0){
+            result += checkMinSteps(hash_nums[key], -1 , 0);
+        }
+    }
+
+    return result; 
+};
+
+const checkMinSteps =(num, step, num2) =>{
+    if(num == 0){
+        return step;
+    }
+
+    num -= 2;
+    num2++;
+    if(num % 3 == 0){
+        step = num / 3 + num2;
+        return step;
+    }
+
+    return checkMinSteps(num, step, num2);
+}
