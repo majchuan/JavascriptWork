@@ -28,6 +28,21 @@ var leafSimilar = function(root1, root2) {
 
 };
 
+/**
+ * @param {TreeNode} root1
+ * @param {TreeNode} root2
+ * @return {boolean}
+ */
+var leafSimilarSimpleCompare = function(root1, root2) {
+    const result1 = [];
+    const result2 = [];
+
+    dfs(root1, result1, root2, result2);
+    console.log(result1, result2)
+    return result1.join(',') == result2.join(',');
+};
+
+
 const dfs=(node1, result1, node2, result2) =>{
     if(node1 == null && node2 == null) return ; 
 
