@@ -4,10 +4,8 @@
  * @return {number}
  */
  var minSteps = function(s, t) {
-    if(s.split('').sort().join('') == t.split('').sort().join('')) return 0 ;
     hash_s ={};
     hash_t ={};
-    hash_w ={};
     
     for(let str of s){
         hash_s[str] ? hash_s[str]++ : hash_s[str] = 1;
@@ -35,3 +33,25 @@
 const s = "bab" , t="aba";
 const s1= "gctcxyuluxjuxnsvmomavutrrfb", t1="qijrjrhqqjxjtprybrzpyfyqtzf";
 console.log(minSteps(s1,t1));
+
+var minStepsFastApproach = function (s, t) {
+    const map = new Map();
+    for (const char of s) {
+        map.set(char, (map.get(char) || 0) + 1);
+    }
+
+    let changes = 0;
+
+    for (const char of t) {
+        if (map.has(char)) {
+            map.set(char, (map.get(char) - 1))
+            if (map.get(char) === 0) {
+                map.delete(char)
+            }
+        } else {
+            changes++;
+        }
+    }
+
+    return changes;
+};
