@@ -5,7 +5,7 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function (root, p, q) {
-    const dfs = root => {
+    const dfs = (root) => {
         if (!root) {
             return false;
         }
