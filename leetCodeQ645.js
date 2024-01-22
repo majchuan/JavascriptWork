@@ -7,7 +7,7 @@
     const result =[];
     for(let i = 1 ; i <= nums.length; i++){
         if(hash_nums[nums[i-1]]==1){
-            result.unshift(nums[i-1]);
+            result.push(nums[i-1]);
         }else{
             hash_nums[nums[i-1]] = 1;
         }
