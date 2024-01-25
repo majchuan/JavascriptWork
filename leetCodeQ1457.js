@@ -39,3 +39,41 @@ const dfs=(node, palindrome) =>{
 
     return sum;
 }
+/**
+* @param {TreeNode} root
+* @return {number}
+*/
+var pseudoPalindromicPathsHashMap  = function(root) {
+   const palindrome = {};
+   return dfs(root, palindrome);
+};
+
+const dfsHashMap=(node, palindrome) =>{
+   let sum = 0;
+   if(node != null){
+       palindrome[node.val] ? palindrome[node.val]++ : palindrome[node.val] =1;;
+       if(node.left == null && node.right ==null){
+           let result = checkPalindrome(palindrome);
+           palindrome[node.val]--;
+           return result;
+       }else{
+           sum = dfs(node.left, palindrome) + dfs(node.right, palindrome);
+       }
+       palindrome[node.val]--;
+       return sum;
+   }
+
+   return 0;
+}
+
+const checkPalindrome = (palindrome) =>{
+   let odd = 0;
+   for(let key in palindrome){
+       if(palindrome[key] % 2 == 1){
+           odd++;
+           if(odd > 1) return 0 ;
+       }
+   }
+
+   return 1;
+}
