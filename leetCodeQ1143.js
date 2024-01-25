@@ -28,3 +28,29 @@ const dfs=(text1, text2, index1, index2, memo)=>{
     return result;
 }
 
+/**
+ * @param {string} text1
+ * @param {string} text2
+ * @return {number}
+ */
+var longestCommonSubsequenceTopToBottomApproach = function(text1, text2) {
+    const textLength1= text1.length;
+    const textLength2= text2.length;
+
+    const dp = new Array(textLength1+1).fill(0).map(() => new Array(textLength2+1).fill(0));
+
+    for(let i = 1 ; i <= textLength1; i++){
+        for(let j = 1 ; j <= textLength2; j++){
+            if(text1[i-1] == text2[j-1]){
+                // If characters match, take diagonal value and add 1
+                dp[i][j] = dp[i-1][j-1]+1;
+            }else{
+                // If characters do not match, take the maximum value from 
+                // the left (dp[i][j-1]) or above (dp[i-1][j])
+                dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+            }
+        }
+    }
+
+    return dp[textLength1][textLength2];
+};
