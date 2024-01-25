@@ -11,7 +11,6 @@ var lowestCommonAncestor = function (p, q) {
         uniqueSet.add(node);
         node = node.parent;
     }
-
     node = q ;
     while(node != null){
         if(uniqueSet.has(node)){
@@ -20,6 +19,5 @@ var lowestCommonAncestor = function (p, q) {
             node = node.parent;
         }
     }
-
     return node;
 };
