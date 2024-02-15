@@ -2,6 +2,29 @@
  * @param {number[]} nums
  * @return {number}
  */
+var triangleNumberFastApproach = function(nums) {
+    nums.sort((a, b) => a - b);
+    let count = 0;
+    
+    for(let x = nums.length - 1; x >= 2; x--) {
+        let low = 0, high = x - 1;
+        
+        while(low < high) {
+            if(nums[low] + nums[high] > nums[x]) {
+                count += (high - low);
+                high--;
+            } else {
+                low++;
+            }
+        }
+    }
+    return count;
+};
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 /*
 *Brutal force
 */
