@@ -27,3 +27,25 @@ const dfs=(node, hash_tree, level) =>{
 
     return Math.max(leftMaxKey, rightMaxKey);
 }
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var findBottomLeftValueBFS = function(root) {
+    if (root === null) return null;
+    
+    const queue = [root];
+    let bottomLeft;
+
+    while(queue.length > 0) {
+        const size = queue.length;
+        for(let i = 0; i < size; i++) {
+            const current = queue.shift();
+            if(i === 0) bottomLeft = current.val;
+            if(current.left) queue.push(current.left);
+            if(current.right) queue.push(current.right);
+        }
+    }
+    return bottomLeft
+}
