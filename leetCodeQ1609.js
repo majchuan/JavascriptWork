@@ -39,3 +39,36 @@ var isEvenOddTree = function(root) {
 
     return true;
 };
+
+
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isEvenOddTreeDfs = function(root) {
+    return dfs(root, 0 , {});
+};
+
+const dfs=(node, level, hash_node)=>{
+    if(node == null) return true;
+
+    if(level % 2 == 0){
+        if(node.val % 2 == 0) return false;
+    }else{
+        if(node.val % 2 != 0) return false;
+    }
+
+    if(hash_node[level] != null){
+        let prevNodeVal = hash_node[level];
+        if(level % 2 == 0 && prevNodeVal >= node.val) return false;
+        if(level % 2 != 0 && prevNodeVal <= node.val) return false;
+        hash_node[level] = node.val;
+    }else{
+        hash_node[level] = node.val;
+    }
+
+    let leftNode = dfs(node.left, level+1, hash_node);
+    let rightNode = dfs(node.right, level+1 , hash_node);
+
+    return leftNode && rightNode;
+}
