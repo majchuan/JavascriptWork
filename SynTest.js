@@ -1,4 +1,4 @@
-
+const fs = require("fs");
 
 const commands = ["LGRGRGL","RRGLGLGLLLGRRGRR","RLRLGRLRGLRGLRLR"];
 let direction = 0 ;
@@ -144,5 +144,16 @@ const longWordsMap = longWords.map(x => x.toUpperCase());
 console.log(`This is new long words map ${longWordsMap}`);
 
 
-const isPromoted = prompt("Mark", 100);
-alert(isPromoted);
+//const isPromoted = prompt("Mark", 100);
+//alert(isPromoted);
+
+
+const path = "C:\\Users\\majin\\Desktop\\Mark\\Resume\\";
+console.log(fs.constants.W_OK , fs.constants.R_OK, fs.constants.F_OK, fs.constants.X_OK);
+fs.access(path, 6, (err) =>{
+    if(err){
+        console.log("path exist",err);
+    }else{
+        console.log("path not exist",err);
+    }
+});

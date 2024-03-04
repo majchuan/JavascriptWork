@@ -11,40 +11,29 @@
  * @return {ListNode}
  */
  var removeNthFromEnd = function(head, n) {
-    let nodeLength = 0;
-    let currNode = head;
-    while(currNode != null){
-        nodeLength++;
-        currNode = currNode.next;
+    let curr = head;
+    let length = 0;
+    while (curr != null) {
+        curr = curr.next;
+        length++;
     }
-    
-    if(nodeLength == 1){
-        if(nodeLength == n){
-            return null;
-        }
+    let del = length - n;
+
+    curr = head;
+    let prev = null;
+    while (del > 0) {
+        prev = curr;
+        curr = curr.next;
+        del--;
     }
-    currNode = head;
-    let count = 0;
-    while(currNode != null)
-        {
-            count++;
-            if(nodeLength - n == 0){
-                head = currNode.next;
-                currNode.next =null;
-            }
-            if(count == (nodeLength - n)){
-                console.log(count);
-                if(currNode.next && currNode.next.next){
-                    currNode.next = currNode.next.next; 
-                }else{
-                    currNode.next = null ;
-                }
-            }
-            
-            if(currNode != null){
-                currNode = currNode.next;
-            }
-        }
+
+    if (prev === null) {
+        // If prev is null, it means we are removing the first node
+        head = head.next;
+    } else {
+        prev.next = curr.next;
+    }
+
     return head;
 };
 

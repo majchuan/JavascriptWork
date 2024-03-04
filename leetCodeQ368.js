@@ -2,32 +2,33 @@
  * @param {number[]} nums
  * @return {number[]}
  */
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
 var largestDivisibleSubset = function(nums) {
-    const subsets =[];
-    nums.sort((x,y) => x-y);
-    dfsSubset(nums,subsets,[],0);
-    return subsets.sort((x,y) => y.length - x.length)[0];
-};
+    let result = [];
+    const memo = new Array(nums.length).fill(-1);
 
-const dfsSubset =(nums, subsets, currentNum, index)=>{
-    if(isSubSetDivible(currentNum)){
-        subsets.push(currentNum);
-    }
-    for(let i = index ; i< nums.length; i++){
-        dfsSubset(nums, subsets , currentNum.concat(nums[i]), i+1);
-    }
-}
+    const helper = (index, curr, prev) =>{
+        if(curr.length > result.length){
+            result = curr.slice();
+        }
 
-const isSubSetDivible =(currentNum) =>{
-    if(currentNum.length < 2) return false ;
-
-    for(let i = 0 ; i < currentNum.length-1 ; i++){
-        if(currentNum[i] % currentNum[i+1] != 0 && currentNum[i+1] % currentNum[i] != 0){
-            return false;
+        for(let i = index ; i < nums.length ; i++){
+            if(curr.length > memo[i] && nums[i] % prev == 0){
+                memo[i] = curr.length;
+                curr.push(nums[i]);
+                helper(i+1, curr, nums[i]);
+                curr.pop();
+            }
         }
     }
-    return true;
-}
+
+    nums.sort((a,b) => a-b);
+    helper(0, [], 1);
+    return result;
+};
 
 const nums =[1,2,3];
 const nums1=[3,4,16,8];
