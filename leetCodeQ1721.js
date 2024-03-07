@@ -77,3 +77,26 @@ var swapNodesSlower = function(head, k) {
     
     return head.next;
 };
+
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+var swapNodesFast = function(head, k) {
+    let left = head
+    for (let i = 0; i < k - 1; i++) {
+        left = left.next
+    }
+    
+    let temp = left
+    let right = head
+    while (temp.next) {
+        temp = temp.next
+        right = right.next
+    }
+
+    [right.val, left.val] = [left.val, right.val]
+
+    return head
+};
