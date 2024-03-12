@@ -3,6 +3,22 @@
  * @param {string} s
  * @return {string}
  */
+var customSortStringFasterApproach = function(order, s) {
+    const arr = new Array(26).fill(Number.MAX_SAFE_INTEGER);
+    for(let i = 0 ; i < order.length ; i++){
+        arr[order.charCodeAt(i) - 97] = i ; 
+    }
+
+    const chars = s.split('');
+    chars.sort((a,b) => arr[a.charCodeAt(0) - 97] - arr[b.charCodeAt(0)-97]);
+    return chars.join('');
+};
+
+/**
+ * @param {string} order
+ * @param {string} s
+ * @return {string}
+ */
 var customSortString = function(order, s) {
     let answer = "";
     let freq = {};
