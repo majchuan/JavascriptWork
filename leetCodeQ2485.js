@@ -23,3 +23,21 @@ var pivotInteger = function(n) {
 
     return -1;
 };
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var pivotIntegerPrefixSum = function(n) {
+    let total = n * (n + 1) / 2;
+        let sum_i = 0;
+
+        for (let i = 1; i <= n; i++) {
+            if (sum_i === total - sum_i - i) {
+                return i;
+            }
+            sum_i += i;
+        }
+
+        return -1;
+};
