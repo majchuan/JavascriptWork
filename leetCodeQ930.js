@@ -25,6 +25,37 @@ var numSubarraysWithSum = function(nums, goal) {
 };
 
 
+/**
+ * @param {number[]} nums
+ * @param {number} goal
+ * @return {number}
+ */
+var numSubarraysWithSumSlidingWindowApproach = function(nums, goal) {
+    return slidingWindow(nums, goal) - slidingWindow(nums, goal-1);
+};
+
+const slidingWindow = (nums, goal) =>{
+    let left = 0 ;
+    let right = 0; 
+    let sum = 0 ;
+    let count = 0;
+
+    while(right < nums.length){
+        sum += nums[right];
+
+        while(left <= right && sum > goal){
+            sum -= nums[left];
+            left++;
+        }
+
+        count += right - left + 1;
+        right++;
+    }
+
+    return count;
+}
+
 
 const nums = [1,0,1,0,1], goal = 2 ;
 console.log(numSubarraysWithSum(nums,goal));
+
