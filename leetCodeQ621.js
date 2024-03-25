@@ -36,6 +36,35 @@ var leastInterval = function(tasks, n) {
       );
 }
 
+/**
+ * @param {character[]} tasks
+ * @param {number} n
+ * @return {number}
+ */
+var leastIntervalFillingAndSortingSlots = function(tasks, n) {
+  const freq = new Array(26).fill(0);
+
+  for(let task of tasks){
+      freq[task.charCodeAt(0) - 65]++;
+  }
+
+  console.log(freq);
+
+  freq.sort((a,b) => a - b);
+
+  let maxFreq = freq[25] - 1 ;
+
+  let idleSlots = maxFreq * n ;
+
+  for(let i = 24 ; i >=0 ; i--){
+      if(freq[i] > 0){
+          idleSlots -= Math.min(maxFreq, freq[i]);
+      }
+  }
+
+  return idleSlots > 0 ? idleSlots + tasks.length : tasks.length;
+};
+
 const tasks = ["A","A","A","A","A","A","B","C","D","E","F","G"], n = 3;
 const tasks1 = ["A","A","A","B","B","B"], n1 = 3;
 console.log(leastInterval(tasks1,n1));
