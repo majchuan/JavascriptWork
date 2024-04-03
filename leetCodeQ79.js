@@ -42,66 +42,68 @@ var exist = function(board, word) {
 
 /*---------------------------------------------------------------------------------------*/
 var existSlowFunction = function(board, word) {
-    const result =[];
     const directions =[1,2,3,4];
-    checkWord(board,word,"",0,0,directions,result);
-    if(result.length == 0) {
-        return false
-    }else{
-        return result[0];
+    let combineWord = "";
+    for(let i = 0 ; i < board.length ; i++){
+        for(let j = 0 ; j < board[0].length; j++){
+            if(board[i][j] == word[0]){
+                let isExist = checkWord(board, word, combineWord, i, j, directions);
+                if(isExist) return true;
+            }
+        }
     }
+    return false;
 };
 
-const checkWord = (board,word, combineWord,m,n ,directions ,result) =>{
+const checkWord = (board,word, combineWord, m, n ,directions) =>{
     
     if(m < 0 || m >= board.length || n < 0 || n >= board[0].length){
-        return 
+        return false;
     }
 
     if(board[m][n] == "*"){
-        return;
+        return false;
     }
     
     if(combineWord.length > word.length){
-        return;
+        return false;
     }
 
     if(combineWord === word) {
-        result.push(true);
-        return ;
+        return true;
     }
-    
-    for(let i = m ; i < board.length ; i++){
-        for(let j = n ; j <board[0].length ; j++){
-            let currentWord = combineWord+ board[i][j];
-            if(currentWord == word) {
-                result.push(true);
-                return ;
-            }
-            let temp = board[i][j];
-            board[i][j] ="*";
-            let dIndex = 0 ;
-            while(dIndex < directions.length){
-                switch(directions[dIndex]) {
-                    case 1:
-                        checkWord(board,word,currentWord, i-1 ,j, directions ,result);
-                        break;
-                    case 2:
-                        checkWord(board,word,currentWord, i, j+1, directions, result);
-                        break;
-                    case 3:
-                        checkWord(board,word,currentWord, i+1, j, directions, result);
-                        break;
-                    case 4:
-                        checkWord(board,word,currentWord, i, j-1, directions , result);
-                        break;
+
+    let temp = board[m][n];
+    board[m][n] ="*";
+
+    for(let i = 0 ; i < directions.length ; i++){
+        switch(directions[i]){
+            case 1:
+                if(board[m][n] != "*" && board[m][n] == word[combineWord.length] && checkWord(board,word,currentWord+board[m][n], m-1 ,n, directions)){
+                    return true;
                 }
-                
-                dIndex++;
-            }
-            board[i][j] = temp;
+                break;
+            case 2:
+                if(board[m][n] != "*" && board[m][n] == word[combineWord.length] && checkWord(board,word,currentWord + board[m][n], m, n+1, directions)){
+                    return true;
+                }
+                break;
+            case 3:
+                if(board[m][n] != "*" && board[m][n] == word[combineWord.length] && checkWord(board,word,currentWord + board[m][n], m+1, n, directions)){
+                    return true;
+                }
+                break;
+            case 4:
+                if(board[m][n] != "*" && board[i][j] == word[combineWord.length] && checkWord(board,word,currentWord+board[m][n], m, n-1, directions)){
+                    return true;
+                }
+                break;
         }
     }
+    
+    board[i][j] = temp;
+
+    return false;
 }
 
 const board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED";
