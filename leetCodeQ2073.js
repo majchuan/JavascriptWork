@@ -21,3 +21,6 @@ var timeRequiredToBuy = function(tickets, k) {
 
     return totalTickets;
 };
+
+
+console.log(timeRequiredToBuy([1,2,3],2));
