@@ -69,3 +69,37 @@
     
     return maxVal;
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var smallestFromLeafFast = function(root) {
+    return dfsFast(root, "");
+};
+
+const dfsFast=(node, curr) =>{
+    if(node == null) return null;
+
+    curr = String.fromCharCode(node.val + 97) + curr;
+
+    if(node.left == null && node.right == null){
+        return curr;
+    }
+
+    let left = dfs(node.left, curr);
+    let right = dfs(node.right,curr);
+
+    if(left == null) return right;
+    if(right == null) return left;
+
+    return left > right ? right : left;
+}
