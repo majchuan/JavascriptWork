@@ -36,3 +36,38 @@ const recursivePaths = (node, paths, result) =>{
         recursivePaths(node.right, path+ node.right.val +"->", result);
     }
 }
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+var binaryTreePathsFast = function(root) {
+    const result = [];
+    dfsFast(root, "" , result);
+    return result;
+};
+
+const dfsFast=(node, curr, result) =>{
+    if(node == null) return;
+
+    if(curr ==""){
+        curr = node.val.toString();
+    }else{
+        curr = curr +"->"+node.val;
+    }
+
+    if(node.left == null && node.right == null){
+        result.push(curr);
+    }
+
+    dfs(node.left, curr, result);
+    dfs(node.right, curr, result);
+}
