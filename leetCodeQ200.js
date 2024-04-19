@@ -3,7 +3,7 @@
  * @return {number}
  */
 /*
-*DFS
+*DFS, you can create a visited array , or simple just set visited grid[i][j] = '-1' or other value like 'a'
 */
 var numIslands = function(grid) {
     let counter = 0;
