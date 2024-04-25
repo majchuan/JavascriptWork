@@ -31,7 +31,7 @@ const binarySearchPosition = (dp, target, hi) => {
     }
     return lo;
 }
-var lengthOfLISDP = function(nums) {
+var lengthOfLIS_DP = function(nums) {
     const dp= new Array(nums.length).fill(1);
     for(let i = 1 ; i < nums.length; i++){
         for(let j = 0; j < i; j++){
