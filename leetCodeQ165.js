@@ -46,5 +46,37 @@
     }
 };
 
+/**
+ * @param {string} version1
+ * @param {string} version2
+ * @return {number}
+ */
+var compareVersionFasterFunction = function(version1, version2) {
+    const nums1 = version1.split('.').map( n => parseInt(n) );
+    const nums2 = version2.split('.').map( n => parseInt(n) );
+
+    while(nums1.length > 0 && nums2.length > 0) {
+        const num1 = nums1.shift();
+        const num2 = nums2.shift();
+        if(num1 == num2) continue;
+        if(num1 < num2) return -1;
+        else return 1;
+    }
+
+    while(nums1.length > 0) {
+        const num = nums1.shift();
+        if(num == 0) continue;
+        return 1;
+    }
+
+    while(nums2.length > 0) {
+        const num = nums2.shift();
+        if(num == 0) continue;
+        return -1;
+    }
+
+    return 0;
+};
+
 const version1 = "1.01", version2 = "1.001";
 console.log(compareVersion(version1,version2));
