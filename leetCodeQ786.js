@@ -15,3 +15,50 @@ var kthSmallestPrimeFraction = function(arr, k) {
     ans[1] = fractions[k-1][2];
     return ans
 };
+
+/**
+ * @param {number[]} arr
+ * @param {number} k
+ * @return {number[]}
+ */
+var kthSmallestPrimeFractionBinarySearchApproach = function(arr, k) {
+    let n = arr.length; 
+    let left = 0 ;
+    let right = 1;
+
+    while(left < right){
+        let mid =(left + right) / 2 ;
+
+        let maxFraction = 0.0;
+        let totalSmallerFractions = 0;
+        let numeratorId = 0 ;
+        let denominatorId = 0 ;
+        let j = 1;
+        for(let i = 0 ; i < n -1 ; i++){
+            while(j < n && arr[i] >= mid * arr[j]){
+                j++;
+            }
+
+            totalSmallerFractions += n-j;
+
+            let fraction = arr[i]/ arr[j];
+
+            if(j == n) break;
+
+            if(fraction > maxFraction){
+                maxFraction = fraction;
+                numeratorId = i;
+                denominatorId = j;
+            }
+        }
+
+        if(totalSmallerFractions == k){
+            return [arr[numeratorId], arr[denominatorId]];
+        }else if (totalSmallerFractions > k){
+            right = mid;
+        }else{
+            left = mid;
+        }
+    }
+    return [];
+};
