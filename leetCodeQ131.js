@@ -27,15 +27,13 @@ const checkPalindrome = (s) =>{
 */
 
 const backTrack =(s,start , subStrList, result) =>{
-    //if(start == (s.length)){
-        //console.log(subStrList) ;
+    if(start == (s.length)){
         result.push(subStrList);
-    //}
+    }
 
     for(let i = start ; i< s.length ; i++){
         let subStrs = s.slice(start , i+1);
         if(checkPalindrome(subStrs)){
-            //console.log([...subStrList,subStrs]);
             backTrack(s, i+1 , [...subStrList, subStrs], result);
             //backTrack(s,i+1,subStrList.concat(subStrs),result);
             //backTrack(s,i+1, subStrList.concat(s[i]),result);
