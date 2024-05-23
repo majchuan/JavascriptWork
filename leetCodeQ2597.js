@@ -32,3 +32,29 @@ const dfs=(nums, k, freqMap, index)=>{
 
     return totalCount;
 }
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var beautifulSubsetsFastFunction = function(nums, k) {
+    return dfsFast(nums, k);
+};
+
+const dfsFast=(nums,k)=>{
+    let result = 0 ;
+    const n = nums.length;
+    if(n == 0) return 0;
+    for(let i = 0 ; i < n ; i++){
+        const next = [];
+        for(let j = i+1; j < n ; j++){
+            if(Math.abs(nums[i] - nums[j]) != k ){
+                next.push(nums[j]);
+            }
+        }
+        result += 1 + dfs(next,k);
+    }
+    return result;
+}
+
