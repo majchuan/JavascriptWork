@@ -26,3 +26,27 @@
     
     return result;
 };
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersectFastApproach = function(nums1, nums2) {
+    const nums1Map = {}
+    const res = []
+
+    for(let i=0; i< nums1.length; i++){
+        const num1 = nums1[i]
+        nums1Map[num1] ? nums1Map[num1]++ : nums1Map[num1] = 1;
+    }
+
+    for(let i=0; i< nums2.length; i++){
+        const num2 = nums2[i]
+        if(nums1Map[num2] > 0){
+            res.push(num2);
+            nums1Map[num2]--
+        }
+    }  
+    return res
+};
