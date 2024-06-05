@@ -30,3 +30,23 @@ var findDifference = function(nums1, nums2) {
 
     return [ans1, ans2];
 };
+
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[][]}
+ */
+var findDifferenceFastApproach = function(nums1, nums2) {
+    const uniqueSet1 = new Set(nums1);
+    const uniqueSet2 = new Set(nums2);
+
+    uniqueSet1.forEach((item) =>{
+        if(uniqueSet2.has(item)){
+            uniqueSet1.delete(item);
+            uniqueSet2.delete(item);
+        }
+    });
+    
+    return [[...uniqueSet1], [...uniqueSet2]];
+};
