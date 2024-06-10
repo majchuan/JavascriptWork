@@ -5,6 +5,7 @@
 var heightChecker = function(heights) {
     let counter = 0 ;
     const mergeHeights = mergeSort(heights);
+    const bubleHeights = bubleSort(heights.slice());
  
     for(let i = 0 ; i < heights.length; i++){
         if(heights[i] != mergeHeights[i]){
@@ -14,6 +15,24 @@ var heightChecker = function(heights) {
 
     return counter;
 };
+
+const bubleSort=(heights) =>{
+    let isSorted= true;
+
+    while(isSorted){
+        isSorted = false;
+        for(let i = 1 ; i < heights.length; i++){
+            if(heights[i-1] > heights[i]){
+                let temp = heights[i-1];
+                heights[i-1] = heights[i];
+                heights[i] = temp;
+                isSorted = true;
+            }
+        }
+    }
+
+    return heights;
+}
 
 const mergeSort=(heights)=>{
     let start = 0 ;
