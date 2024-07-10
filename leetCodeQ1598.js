@@ -8,11 +8,9 @@ var minOperations = function(logs) {
         if(stack.length > 0 && logs[i] == "../"){
             stack.pop();
         }
-        
         if(logs[i].match(/[a-z0-9]/)){
             stack.push(logs[i]);
         }
     }
-
     return stack.length;
 };
