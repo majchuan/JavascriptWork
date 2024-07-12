@@ -29,3 +29,22 @@ var backspaceCompare = function(s, t) {
     
     return stackS.join() == stackT.join();
 };
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var backspaceCompare1 = function(s, t) {
+    return backspaceString(t) === backspaceString(s);
+};
+const backspaceString=(s)=>{
+    const stack = [];
+    for (const c of s) {
+        if (c === '#') {
+            stack.pop();
+        } else {
+            stack.push(c);
+        }
+    }
+    return stack.join('');
+}
