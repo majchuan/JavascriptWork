@@ -67,3 +67,25 @@ const buildBinaryTree  = (node, hash_parent_child) =>{
     buildBinaryTree(leftNode, hash_parent_child);
     buildBinaryTree(rightNode,hash_parent_child);
 }
+
+/**
+ * @param {number[][]} descriptions
+ * @return {TreeNode}
+ */
+var createBinaryTreeFastApproach = function(descriptions) {
+    const parents = new Set();
+    const childs = new Set();
+    const nodes = new Map();
+    for (const [parent, child, isLeft] of descriptions) {
+        const parentNode = nodes.get(parent) ?? nodes.set(parent, new TreeNode(parent)).get(parent);
+        const currentNode = nodes.get(child) ?? nodes.set(child, new TreeNode(child)).get(child);
+        if (isLeft) parentNode.left = currentNode;
+        else parentNode.right = currentNode;
+        parents.add(parent);
+        childs.add(child);
+    }
+    for (const p of parents) {
+        if (!childs.has(p)) return nodes.get(p);
+    }
+};
+
