@@ -10,7 +10,7 @@ var sortArray = function(nums) {
     return quickSortArray(nums, 0, nums.length-1);
 };
 //heap sort 
-
+//This will be add later.
 //bianry tree sort
 
 //Insertion sort
