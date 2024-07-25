@@ -127,6 +127,5 @@ const mergeSortArray = (nums) =>{
 }
 
 
-
 const nums = [5,1,1,2,0,0,9,15,3,4,7,6];
 console.log(sortArray(nums));
