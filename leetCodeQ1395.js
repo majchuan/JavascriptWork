@@ -5,8 +5,8 @@
 var numTeams = function(rating) {
     let count = 0 ;
     const result = [];
-    const cache_1 = new Array(rating.length+1).fill().map(() => new Array(5).fill(-1));
-    const cache_2 = new Array(rating.length+1).fill().map(() => new Array(5).fill(-1));
+    const cache_1 = new Array(rating.length+1).fill().map(() => new Array(4).fill(-1));
+    const cache_2 = new Array(rating.length+1).fill().map(() => new Array(4).fill(-1));
     count += dfs_desc(rating, 0, result, cache_1);
     count += dfs_incre(rating, 0, result, cache_2);
     return count;
@@ -16,9 +16,6 @@ const dfs_desc=(rating, index, result, cache)=>{
     let count = 0 ;
     let length = result.length;
 
-    if(index == rating.length+1){
-        return 0 ;
-    }
     if(result.length == 3){
         return 1;
     }
@@ -44,10 +41,6 @@ const dfs_desc=(rating, index, result, cache)=>{
 const dfs_incre=(rating, index, result, cache)=>{
     let count = 0 ;
     let length = result.length;
-
-    if(index == rating.length + 1){
-        return 0 ;
-    }
 
     if(result.length == 3){
         return 1;
