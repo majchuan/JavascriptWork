@@ -7,8 +7,9 @@ var combinationSum2 = function(candidates, target) {
     const result =[];
     const arr=[];
     candidates.sort((a,b) => a-b);
-    //dfs(candidates,target,0,0,arr,result);
-    dfs1(candidates,target,0,new Set(),result);
+    dfs(candidates,target,0,0,arr,result);
+    console.log(candidates);
+    //dfs1(candidates,target,0,new Set(),result);
     return result;
 };
 
