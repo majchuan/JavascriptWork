@@ -28,3 +28,45 @@ var lemonadeChange = function(bills) {
     }
     return true;
 };
+
+/**
+ * @param {number[]} bills
+ * @return {boolean}
+ */
+var lemonadeChangeMap = function(bills) {
+    const n = bills.length;
+    const totalSales = n * 5 ; 
+    const totalBills = bills.reduce((a,b) => a + b , 0);
+
+    if(totalBills - totalSales > totalSales) return false ;
+
+    const currentBills = {5 : 0, 10 : 0 , 20 : 0}; 
+    for(let bill of bills){
+        if(bill == 20 ){
+            currentBills[20]++;
+            if(currentBills[10] > 0 && currentBills[5] > 0){
+                currentBills[10]--;
+                currentBills[5]--;
+            }else if(currentBills[5] >= 3){
+                currentBills[5] = currentBills[5]-3;
+            }else{
+                return false;
+            }
+        }
+
+        if(bill == 10){
+            currentBills[10]++;
+            if(currentBills[5] > 0){
+                currentBills[5]--;
+            }else{
+                return false;
+            }
+        }
+
+        if(bill == 5){
+            currentBills[5]++;
+        }
+    }
+
+    return true;
+};
