@@ -58,3 +58,49 @@ var splitListToParts = function(head, k) {
     return result;
 
 };
+
+
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode[]}
+ */
+var splitListToPartsFastApproach= function(head, k) {
+    const bucket = new Array(k).fill(null);
+    const arr = [];
+
+    let n = 0;
+    let cur = head;
+    while (cur) {
+        arr.push(cur);
+        n++;
+        cur = cur.next;
+    }
+
+    const elementSize = Math.floor(n / k);
+    let elementResidual = n % k;
+    let current = 0;
+
+    for (let i = 0; i < k; i++) {
+        if (elementSize < 1) {
+        if (!arr[i]) {
+            break;
+        }
+        bucket[i] = arr[i];
+        arr[i].next = null;
+        } else {
+        bucket[i] = arr[current];
+        if (elementResidual > 0) {
+            current++;
+            elementResidual--;
+        }
+        current += elementSize - 1;
+        if (arr[current]) {
+            arr[current].next = null;
+        }
+        current++;
+        }
+    }
+
+    return bucket;
+};
