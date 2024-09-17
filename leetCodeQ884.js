@@ -16,6 +16,7 @@ var uncommonFromSentences = function(s1, s2) {
             hash_s1.set(s,1);
         }
     }
+    
     for(let s of s2_arr){
         if(hash_s2.has(s)){
             hash_s2.set(s, hash_s1.get(s)+1);
@@ -38,3 +39,17 @@ var uncommonFromSentences = function(s1, s2) {
 
     return result;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+//test
