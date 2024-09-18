@@ -65,29 +65,15 @@ const compare = (firstNum, secondNum) =>{
  * @return {string}
  */
 var largestNumberFasterApproach = function(nums) {
-    // Convert all numbers to strings
-    const numsStr = nums.map(String);
+    // Convert numbers to strings
+    let numsStr = nums.map(String);
+
+    // Custom comparator to decide the order
+    numsStr.sort((a, b) => (b + a) - (a + b));
     
-    // Custom comparator function
-    const compare = (a, b) => {
-        // Compare the two possible concatenated results
-        if (a + b > b + a) {
-            return -1;
-        } else if (a + b < b + a) {
-            return 1;
-        } else {
-            return 0;
-        }
-    };
+    // Join sorted numbers into one string
+    let largestNum = numsStr.join('');
     
-    // Sort the array using the custom comparator
-    numsStr.sort(compare);
-    
-    // Handle edge case where the largest number is "0"
-    if (numsStr[0] === '0') {
-        return '0';
-    }
-    
-    // Join the sorted numbers into a single string
-    return numsStr.join('');
+    // Edge case: if the result is something like "00", return "0"
+    return largestNum[0] === '0' ? '0' : largestNum;
 };
