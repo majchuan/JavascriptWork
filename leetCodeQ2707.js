@@ -32,5 +32,5 @@ var minExtraChar = function(s, dictionary) {
     return dfs(0);
 };
 
-const s = "leetscode", dictionary = ["leet","code","leetcode"];
+const s = "sayhellosworld", dictionary = ["hello","world"];
 console.log(minExtraChar(s, dictionary));
