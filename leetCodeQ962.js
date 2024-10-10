@@ -21,3 +21,26 @@ var maxWidthRamp = function(nums) {
 
     return maxWidth;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxWidthRampSort = function(nums) {
+    const indexNums = nums.map((element ,index) => [element, index]);
+
+    indexNums.sort((a,b) => a[0] - b[0]);
+
+    let maxWidth = 0 ;
+    let minIndex = indexNums[0][1];
+
+    for(let i = 1 ; i < indexNums.length ; i++){
+        let currentIndex = indexNums[i][1];
+
+        maxWidth = Math.max(maxWidth , currentIndex - minIndex);
+
+        minIndex = Math.min(minIndex, currentIndex);
+    }
+
+    return maxWidth;
+};
