@@ -73,6 +73,31 @@ var maxLevelSumFaster = function(root) {
     return max;
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxLevelSumBFS = function (root) {
+    let nodes = [root], nextNodes = [];
+    let max = root.val, maxLevel = 1;
+    let level = 1;
+    while (nodes.length > 0) {
+        let sum = nodes.reduce((acc, node) => {
+            if (node.left) nextNodes.push(node.left);
+            if (node.right) nextNodes.push(node.right);
+            return acc + node.val;
+        }, 0);
+        if (sum > max) {
+            max = sum;
+            maxLevel = level;
+        }
+        level++;
+        nodes = nextNodes;
+        nextNodes = [];
+    }
+    return maxLevel;
+};
+
 // root = [1,7,0,7,-8,null,null]
 //[-100,-200,-300,-20,-5,-10,null]
 const root = new TreeNode(-100);
