@@ -17,6 +17,25 @@ var removeSubfolders = function(folder) {
     return Array.from(folderSet);
 };
 
+/**
+ * @param {string[]} folder
+ * @return {string[]}
+ */
+var removeSubfoldersSortingApproach = function(folder) {
+    folder.sort();
+    
+    const result = [];
+    
+    // Step 2: Iterate through the sorted folder list
+    for (const afolder of folder) {
+        // If result is empty or current folder is not a subfolder of the last added folder
+        if (result.length === 0 || !afolder.startsWith(result[result.length - 1] + '/')) {
+            result.push(afolder);
+        }
+    }
+    
+    return result;
+};
 
 const folder =["/a","/a/b/c","/a/b/d"];
 const folder1= ["/a/b/c","/a/b/ca","/a/b/d"];
