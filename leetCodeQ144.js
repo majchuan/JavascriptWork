@@ -24,3 +24,36 @@ const preOrderNodeValueTraversal = (node, preOrderNode) =>{
         preOrderNodeValueTraversal(node.right,preOrderNode);
     }
 }
+
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversalBFS = function(root) {
+     let ans = [];
+
+     if(root == null)
+     {
+        return ans
+     }
+
+     let stack = [];
+     stack.push(root);
+
+     while(stack.length > 0)
+     {
+        root = stack.pop();
+        ans.push(root.val);
+
+        if(root.right)
+        {
+            stack.push(root.right)
+        }
+        if(root.left)
+        {
+            stack.push(root.left)
+        }
+     }
+   
+   return ans
+};
