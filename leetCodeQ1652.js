@@ -11,7 +11,6 @@ var decrypt = function(code, k) {
     }
 
     if(k > 0){
-
         for(let i = 0 ; i < code.length; i++){
             let sum = 0 ;
             for(let j = 0 ; j < k ; j++){
@@ -20,7 +19,6 @@ var decrypt = function(code, k) {
             }
             result[i] = sum;   
         }
-
         return result;
     }else{
         for(let i = 0; i < n ; i++){
