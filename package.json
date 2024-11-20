@@ -1,4 +1,5 @@
 {
+  "name":"test",
   "type": "module",
   "dependencies": {
     "@datastructures-js/heap": "^4.3.2",
