@@ -20,3 +20,23 @@ var addSpaces = function(s, spaces) {
 
     return result;
 };
+
+
+/**
+ * @param {string} s
+ * @param {number[]} spaces
+ * @return {string}
+ */
+var addSpacesFastApproach = function(s, spaces) {
+    let spaceString ='';
+    let left = 0 ;
+    let right = 0;
+
+    while(right <= spaces.length){
+        spaceString += s.slice(left, spaces[right]) + ' ';
+        left = spaces[right];
+        right++;
+    }
+  
+    return spaceString.trimEnd();
+};
