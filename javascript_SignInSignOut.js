@@ -8,15 +8,29 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
-    inputString += inputStdin;
-});
+const filePath = process.argv[2];
 
-process.stdin.on('end', function() {
-    inputString = inputString.split('\n');
+if (filePath) {
+    // Read file if a file path is provided
+    try {
+        inputString = fs.readFileSync(filePath, 'utf-8');
+        inputString = inputString.split('\n'); // Prepare for line-based processing
+        main();
+    } catch (err) {
+        console.error('Error reading file:', err.message);
+        process.exit(1);
+    }
+} else {
+    // Fallback to process.stdin
+    process.stdin.on('data', function (inputStdin) {
+        inputString += inputStdin;
+    });
 
-    main();
-});
+    process.stdin.on('end', function () {
+        inputString = inputString.split('\n');
+        main();
+    });
+}
 
 function readLine() {
     return inputString[currentLine++];
@@ -81,6 +95,8 @@ function main() {
     const maxSpan = parseInt(readLine().trim(), 10);
 
     const result = processLogs(logs, maxSpan);
+
+    console.log(result);
 
     ws.write(result.join('\n') + '\n');
 
