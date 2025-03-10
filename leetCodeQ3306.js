@@ -37,7 +37,6 @@ var countOfSubstrings = function(word, k) {
             nextConsonantIndex = i ;
         }
     }
-    console.log(nextConsonant);
 
     while(end < word.length){
         if(isVowel(word[end])){
@@ -61,7 +60,7 @@ var countOfSubstrings = function(word, k) {
         }
 
         while(start < word.length && checkVowel(hash_words) && consonantCount == k){
-            console.log(end, nextConsonant[end]);
+
             result += nextConsonant[end] - end ; 
             if(isVowel(word[start])){
                 hash_words.set(word[start], hash_words.get(word[start]) - 1);
