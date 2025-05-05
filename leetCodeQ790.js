@@ -49,3 +49,4 @@ var numTilings = function(n) {
 };
 
 console.log(numTilings(3));
+console.log(numTilings(5));
