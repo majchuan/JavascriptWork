@@ -13,53 +13,37 @@ carry the cargo on foot.
 form position 0 to position target
 */
 
+
 function calculateFootDistance(target, stations) {
   stations.sort((a, b) => a - b);
-  stations.push(target + 11); // Sentinel to simplify edge cases
+  stations.push(target);
 
-  let manualSteps = 0;
-  let pos = 0;
+  let footDistance = 0;
+  let cargoPos = 0; // where cargo currently is
+  let i = 0;
 
-  while (pos < target) {
-    // Find next station ahead to walk to
-    let nextStation = stations.find(st => st > pos);
-    if (nextStation === undefined) {
-      // No station left, walk to target
-      manualSteps += target - pos;
-      break;
-    }
+  while (cargoPos < target) {
+    // find next station ahead of cargoPos
+    while (i < stations.length && stations[i] < cargoPos) i++;
+    let nextStation = stations[i];
 
-    // Walk to next station (carry cargo)
-    manualSteps += nextStation - pos;
-    pos = nextStation;
+    footDistance += nextStation - cargoPos;
+    // drone launches from nextStation, flies max 10 units or to target
+    let droneLanding = Math.min(nextStation + 10, target);
 
-    // Drone flies 10 units
-    let droneLanding = Math.min(pos + 10, target);
+    if(droneLanding >= target) break;
 
-    // Check if there's a station at droneLanding
-    if (!stations.includes(droneLanding)) {
-      // No station: find the next station beyond droneLanding
-      let nextAvailable = stations.find(st => st > droneLanding);
-
-      // But if the next station is beyond target, we must walk to target
-      if (droneLanding < target) {
-        let walkTo = Math.min(nextAvailable ?? target, target);
-        manualSteps += walkTo - droneLanding;
-        pos = walkTo; // You are now at next station
-      } else {
-        pos = target;
-      }
-    } else {
-      pos = droneLanding;
-    }
+    // update cargo position to where the drone landed
+    cargoPos = droneLanding;
   }
 
-  return manualSteps;
+  return footDistance;
 }
 
 
 
-
-
 console.log(calculateFootDistance(23,[7,4,14]));
+console.log(calculateFootDistance(20,[5,10,15]));
+console.log(calculateFootDistance(30,[5,10,15,20]));
+console.log(calculateFootDistance(27,[3,7,10,15]));
 
